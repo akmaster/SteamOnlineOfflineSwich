@@ -6,6 +6,8 @@ import sys
 import ctypes
 from pathlib import Path
 import threading
+import time
+import psutil
 
 class SteamConnectionController:
     def __init__(self, root):
@@ -130,6 +132,52 @@ class SteamConnectionController:
             return result.returncode == 0, result.stdout, result.stderr
         except Exception as e:
             return False, "", str(e)
+    
+    def is_steam_running(self):
+        """Steam'ın çalışıp çalışmadığını kontrol et"""
+        try:
+            for process in psutil.process_iter(['pid', 'name']):
+                if process.info['name'] and 'steam.exe' in process.info['name'].lower():
+                    return True
+            return False
+        except Exception:
+            return False
+    
+    def close_steam(self):
+        """Steam'ı kapat"""
+        try:
+            # Steam'ı nazikçe kapat
+            subprocess.run("taskkill /im steam.exe /t", shell=True, capture_output=True)
+            time.sleep(2)  # Steam'ın kapanması için bekle
+            
+            # Hala çalışıyorsa zorla kapat
+            if self.is_steam_running():
+                subprocess.run("taskkill /f /im steam.exe /t", shell=True, capture_output=True)
+                time.sleep(1)
+            
+            # Steam ile ilgili diğer süreçleri de kapat
+            steam_processes = ['steamwebhelper.exe', 'steamservice.exe', 'steam.exe']
+            for process_name in steam_processes:
+                subprocess.run(f"taskkill /f /im {process_name} /t", shell=True, capture_output=True)
+            
+            time.sleep(2)  # Tüm süreçlerin kapanması için bekle
+            return True
+        except Exception as e:
+            print(f"Steam kapatma hatası: {e}")
+            return False
+    
+    def start_steam(self):
+        """Steam'ı başlat"""
+        try:
+            if self.steam_paths:
+                # İlk bulunan Steam yolunu kullan
+                steam_exe = self.steam_paths[0]
+                subprocess.Popen([steam_exe], shell=True)
+                return True
+            return False
+        except Exception as e:
+            print(f"Steam başlatma hatası: {e}")
+            return False
     
     def block_steam(self):
         """Steam'ı engelle"""

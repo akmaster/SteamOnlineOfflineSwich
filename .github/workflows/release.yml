@@ -1,0 +1,105 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+    
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --windowed --name "Steam_Connection_Controller" steam_connection_controller.py
+    
+    - name: Create release package
+      run: |
+        mkdir release
+        copy dist\Steam_Connection_Controller.exe release\
+        copy steam_controller.bat release\
+        copy README.md release\
+        copy LICENSE release\
+        copy test_program.py release\
+    
+    - name: Create ZIP archive
+      run: |
+        powershell Compress-Archive -Path release\* -DestinationPath Steam_Connection_Controller_${{ github.ref_name }}.zip
+    
+    - name: Get release info
+      id: release_info
+      run: |
+        echo "tag_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        echo "release_name=Steam Connection Controller ${{ github.ref_name }}" >> $GITHUB_OUTPUT
+    
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.release_info.outputs.tag_name }}
+        release_name: ${{ steps.release_info.outputs.release_name }}
+        body: |
+          ## Steam Bağlantı Kontrolcüsü ${{ steps.release_info.outputs.tag_name }}
+          
+          ### 🎉 Yeni Sürüm Özellikleri
+          - Steam'ın internet bağlantısını tek tıkla kontrol edin
+          - Kullanıcı dostu arayüz
+          - Otomatik Steam tespit sistemi
+          - Güvenli Windows Firewall entegrasyonu
+          
+          ### 📦 İndirme
+          - **Steam_Connection_Controller_${{ steps.release_info.outputs.tag_name }}.zip**: Tam paket (önerilen)
+          - **Steam_Connection_Controller.exe**: Sadece çalıştırılabilir dosya
+          
+          ### 🚀 Kurulum
+          1. ZIP dosyasını indirin ve çıkarın
+          2. `steam_controller.bat` dosyasını **yönetici olarak çalıştırın**
+          3. Program otomatik olarak Steam'ı bulacak ve çalışmaya başlayacak
+          
+          ### ⚠️ Gereksinimler
+          - Windows 10/11
+          - Yönetici yetkisi
+          - Steam kurulu olmalı
+          
+          ### 🐛 Bilinen Sorunlar
+          - İlk çalıştırmada Windows Defender uyarısı çıkabilir (güvenli dosyadır)
+          
+          ### 📞 Destek
+          Sorunlarınız için [Issues](https://github.com/username/steam-connection-controller/issues) bölümünü kullanın.
+        draft: false
+        prerelease: false
+    
+    - name: Upload ZIP Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Steam_Connection_Controller_${{ github.ref_name }}.zip
+        asset_name: Steam_Connection_Controller_${{ github.ref_name }}.zip
+        asset_content_type: application/zip
+    
+    - name: Upload EXE Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/Steam_Connection_Controller.exe
+        asset_name: Steam_Connection_Controller.exe
+        asset_content_type: application/octet-stream

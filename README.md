@@ -1,6 +1,16 @@
 # Steam Bağlantı Kontrolcüsü
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/username/steam-connection-controller)
+![GitHub](https://img.shields.io/github/license/username/steam-connection-controller)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/username/steam-connection-controller/test.yml)
+![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
+![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![GitHub issues](https://img.shields.io/github/issues/username/steam-connection-controller)
+![GitHub stars](https://img.shields.io/github/stars/username/steam-connection-controller)
+
 Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili bir program.
+
+> **Not:** Bu program sadece Windows işletim sistemlerinde çalışır ve yönetici yetkisi gerektirir.
 
 ## Özellikler
 
