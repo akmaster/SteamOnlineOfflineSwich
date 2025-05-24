@@ -1,16 +1,29 @@
 # Steam Connection Controller
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/username/steam-connection-controller)
-![GitHub](https://img.shields.io/github/license/username/steam-connection-controller)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/username/steam-connection-controller/test.yml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/akmaster/SteamOnlineOfflineSwich)
+![GitHub](https://img.shields.io/github/license/akmaster/SteamOnlineOfflineSwich)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/akmaster/SteamOnlineOfflineSwich/test.yml)
 ![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
-![GitHub issues](https://img.shields.io/github/issues/username/steam-connection-controller)
-![GitHub stars](https://img.shields.io/github/stars/username/steam-connection-controller)
+![GitHub issues](https://img.shields.io/github/issues/akmaster/SteamOnlineOfflineSwich)
+![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich)
+![Downloads](https://img.shields.io/github/downloads/akmaster/SteamOnlineOfflineSwich/total)
 
 A simple and effective program to control Steam's internet connection on Windows.
 
 > **Note:** This program only works on Windows operating systems and requires administrator privileges.
+
+## 📥 Download
+
+### 🎯 Latest Release: [v1.1.0](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest)
+
+#### 📦 Recommended Download:
+- **[Complete Package (ZIP)](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.1.0/SteamConnectionController_v1.1.0.zip)** - Includes documentation and all files
+
+#### ⚡ Quick Download:
+- **[Standalone Executable](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.1.0/SteamConnectionController.exe)** - Just the program file
+
+> 💡 **First time?** Download the complete package for full documentation and setup instructions.
 
 ## Features
 
@@ -140,3 +153,17 @@ For issues:
 1. Check the README file
 2. Review the troubleshooting section
 3. Make sure you're running the program as administrator
+4. Report bugs on [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues)
+
+## 🔗 Links
+
+- **GitHub Repository**: [https://github.com/akmaster/SteamOnlineOfflineSwich](https://github.com/akmaster/SteamOnlineOfflineSwich)
+- **Latest Release**: [Download v1.1.0](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest)
+- **Report Issues**: [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues)
+- **Contribute**: [Contributing Guide](CONTRIBUTING.md)
+
+## ⭐ Star This Project
+
+If you find this tool useful, please consider giving it a star on GitHub! It helps others discover the project.
+
+[![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich?style=social)](https://github.com/akmaster/SteamOnlineOfflineSwich/stargazers)

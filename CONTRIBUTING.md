@@ -45,8 +45,8 @@ Thank you for wanting to contribute to the Steam Connection Controller project! 
 1. Fork the repository
 2. Clone to your local machine:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/steam-connection-controller.git
-   cd steam-connection-controller
+   git clone https://github.com/akmaster/SteamOnlineOfflineSwich.git
+   cd SteamOnlineOfflineSwich
    ```
 3. Run the test program:
    ```bash
