@@ -14,6 +14,27 @@ ve bu proje [Semantic Versioning](https://semver.org/spec/v2.0.0.html) kullanır
 - Daha fazla Steam yolu desteği
 - Diğer oyun platformları desteği (Epic Games, Origin, vb.)
 
+## [1.1.0] - 2025-01-24
+
+### Eklenen Özellikler
+- ✨ **Otomatik Steam kapatma/açma sistemi**: Bağlantı değişikliklerinden önce Steam otomatik kapatılır ve sonra yeniden açılır
+- 🔍 Steam süreç kontrolü ve yönetimi (psutil entegrasyonu)
+- ⚡ Gelişmiş kullanıcı geri bildirimi (Steam'ın kapatılacağı konusunda uyarı)
+- 📋 Detaylı işlem durumu gösterimi
+- 🔄 Akıllı Steam yeniden başlatma (sadece önceden çalışıyorsa)
+
+### Geliştirildi
+- 🚀 Daha etkili bağlantı kontrolü (Steam kapatılarak)
+- 💬 Gelişmiş kullanıcı arayüzü mesajları
+- 📊 Daha detaylı işlem raporlama
+- ⏱️ Optimized timing for Steam operations
+
+### Teknik İyileştirmeler
+- psutil kütüphanesi entegrasyonu
+- Gelişmiş hata yönetimi
+- Thread-safe Steam işlemleri
+- Daha güvenilir süreç kontrolü
+
 ## [1.0.0] - 2025-01-24
 
 ### Eklenen Özellikler

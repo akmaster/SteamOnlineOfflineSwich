@@ -188,10 +188,27 @@ class SteamConnectionController:
             messagebox.showerror("Hata", "Steam bulunamadı!")
             return
         
-        self.status_label.config(text="Steam engelleniyor...")
+        # Kullanıcıya Steam'ın kapatılacağını bildir
+        if self.is_steam_running():
+            result = messagebox.askyesno("Steam Kapatılacak",
+                                       "Steam şu anda çalışıyor. Bağlantıyı kesmek için Steam kapatılacak ve sonra yeniden açılacak.\n\n"
+                                       "Devam etmek istiyor musunuz?")
+            if not result:
+                return
+        
+        self.status_label.config(text="Steam kapatılıyor ve bağlantı kesiliyor...")
         self.root.update()
         
         def block_thread():
+            steam_was_running = self.is_steam_running()
+            
+            # 1. Steam'ı kapat
+            if steam_was_running:
+                self.root.after(0, lambda: self.status_label.config(text="Steam kapatılıyor..."))
+                self.close_steam()
+            
+            # 2. Firewall kurallarını oluştur
+            self.root.after(0, lambda: self.status_label.config(text="Firewall kuralları oluşturuluyor..."))
             success_count = 0
             for steam_path in self.steam_paths:
                 # Giden bağlantıları engelle
@@ -205,15 +222,22 @@ class SteamConnectionController:
                 if success_out and success_in:
                     success_count += 1
             
-            self.root.after(0, lambda: self.block_complete(success_count))
+            # 3. Steam'ı yeniden başlat (eğer çalışıyorsa)
+            if steam_was_running and success_count > 0:
+                self.root.after(0, lambda: self.status_label.config(text="Steam yeniden başlatılıyor..."))
+                time.sleep(1)
+                self.start_steam()
+            
+            self.root.after(0, lambda: self.block_complete(success_count, steam_was_running))
         
         threading.Thread(target=block_thread, daemon=True).start()
     
-    def block_complete(self, success_count):
+    def block_complete(self, success_count, steam_was_running=False):
         """Engelleme işlemi tamamlandı"""
         if success_count > 0:
+            restart_msg = "\nSteam yeniden başlatıldı." if steam_was_running else ""
             messagebox.showinfo("Başarılı", f"Steam bağlantısı kesildi!\n"
-                                          f"{success_count} dosya için kural oluşturuldu.")
+                                          f"{success_count} dosya için kural oluşturuldu.{restart_msg}")
         else:
             messagebox.showerror("Hata", "Steam engellenemedi!")
         
@@ -224,10 +248,27 @@ class SteamConnectionController:
         if not self.run_as_admin():
             return
         
-        self.status_label.config(text="Steam engeli kaldırılıyor...")
+        # Kullanıcıya Steam'ın kapatılacağını bildir
+        if self.is_steam_running():
+            result = messagebox.askyesno("Steam Kapatılacak",
+                                       "Steam şu anda çalışıyor. Bağlantıyı açmak için Steam kapatılacak ve sonra yeniden açılacak.\n\n"
+                                       "Devam etmek istiyor musunuz?")
+            if not result:
+                return
+        
+        self.status_label.config(text="Steam kapatılıyor ve bağlantı açılıyor...")
         self.root.update()
         
         def unblock_thread():
+            steam_was_running = self.is_steam_running()
+            
+            # 1. Steam'ı kapat
+            if steam_was_running:
+                self.root.after(0, lambda: self.status_label.config(text="Steam kapatılıyor..."))
+                self.close_steam()
+            
+            # 2. Firewall kurallarını sil
+            self.root.after(0, lambda: self.status_label.config(text="Firewall kuralları kaldırılıyor..."))
             success_count = 0
             
             # Tüm Steam ile ilgili kuralları sil
@@ -245,15 +286,22 @@ class SteamConnectionController:
                 if success_out or success_in:
                     success_count += 1
             
-            self.root.after(0, lambda: self.unblock_complete(success_count))
+            # 3. Steam'ı yeniden başlat (eğer çalışıyorsa)
+            if steam_was_running:
+                self.root.after(0, lambda: self.status_label.config(text="Steam yeniden başlatılıyor..."))
+                time.sleep(1)
+                self.start_steam()
+            
+            self.root.after(0, lambda: self.unblock_complete(success_count, steam_was_running))
         
         threading.Thread(target=unblock_thread, daemon=True).start()
     
-    def unblock_complete(self, success_count):
+    def unblock_complete(self, success_count, steam_was_running=False):
         """Engel kaldırma işlemi tamamlandı"""
         if success_count > 0:
+            restart_msg = "\nSteam yeniden başlatıldı." if steam_was_running else ""
             messagebox.showinfo("Başarılı", f"Steam bağlantısı açıldı!\n"
-                                          f"{success_count} dosya için kural kaldırıldı.")
+                                          f"{success_count} dosya için kural kaldırıldı.{restart_msg}")
         else:
             messagebox.showinfo("Bilgi", "Kaldırılacak kural bulunamadı.")
         

@@ -16,8 +16,10 @@ Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili b
 
 - ✅ Steam'ın internet bağlantısını tek tıkla kesme
 - ✅ Steam'ın internet bağlantısını tek tıkla açma
+- ✅ **Otomatik Steam kapatma/açma** (işlem öncesi ve sonrası)
 - ✅ Gerçek zamanlı bağlantı durumu göstergesi
 - ✅ Otomatik Steam yolu tespiti
+- ✅ Steam süreç kontrolü ve yönetimi
 - ✅ Güvenli Windows Firewall entegrasyonu
 - ✅ Kullanıcı dostu arayüz
 
@@ -25,6 +27,7 @@ Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili b
 
 - Windows 10/11
 - Python 3.6 veya üzeri
+- psutil kütüphanesi (`pip install psutil`)
 - Yönetici yetkisi (firewall kuralları için)
 - Steam kurulu olmalı
 
@@ -32,7 +35,15 @@ Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili b
 
 1. Bu dosyaları bir klasöre indirin
 2. Python'un sisteminizde kurulu olduğundan emin olun
-3. `steam_controller.bat` dosyasını **yönetici olarak çalıştırın**
+3. Gerekli kütüphaneyi kurun:
+   ```bash
+   pip install psutil
+   ```
+   veya
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. `steam_controller.bat` dosyasını **yönetici olarak çalıştırın**
 
 ## Kullanım
 
@@ -45,12 +56,16 @@ Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili b
 
 #### Bağlantıyı Kesme
 - "Bağlantıyı Kes" butonuna tıklayın
+- Steam çalışıyorsa otomatik olarak kapatılacak
 - Program Steam'ın tüm internet erişimini engelleyecek
+- Steam yeniden başlatılacak (eğer önceden çalışıyorsa)
 - Durum göstergesi kırmızı olacak
 
 #### Bağlantıyı Açma
 - "Bağlantıyı Aç" butonuna tıklayın
+- Steam çalışıyorsa otomatik olarak kapatılacak
 - Program Steam'ın internet erişim engelini kaldıracak
+- Steam yeniden başlatılacak (eğer önceden çalışıyorsa)
 - Durum göstergesi yeşil olacak
 
 #### Durum Kontrolü
