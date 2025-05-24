@@ -1,59 +1,59 @@
 # Pull Request
 
-## 📋 Değişiklik Özeti
-Bu PR'da yapılan değişiklikleri kısaca açıklayın:
+## 📋 Change Summary
+Briefly describe the changes made in this PR:
 
-## 🎯 Değişiklik Türü
-Bu PR hangi tür değişiklik içeriyor?
-- [ ] 🐛 Hata düzeltmesi (bug fix)
-- [ ] ✨ Yeni özellik (feature)
-- [ ] 💄 UI/UX iyileştirmesi
-- [ ] ⚡ Performans iyileştirmesi
-- [ ] 📝 Dokümantasyon güncellemesi
-- [ ] 🔧 Kod refactoring
-- [ ] 🧪 Test ekleme/düzeltme
-- [ ] 🔒 Güvenlik iyileştirmesi
+## 🎯 Change Type
+What type of change does this PR contain?
+- [ ] 🐛 Bug fix
+- [ ] ✨ New feature
+- [ ] 💄 UI/UX improvement
+- [ ] ⚡ Performance improvement
+- [ ] 📝 Documentation update
+- [ ] 🔧 Code refactoring
+- [ ] 🧪 Test addition/fix
+- [ ] 🔒 Security improvement
 
-## 🔗 İlgili Issue
-Bu PR hangi issue'yu çözüyor?
-Closes #(issue numarası)
+## 🔗 Related Issue
+Which issue does this PR solve?
+Closes #(issue number)
 
-## 🧪 Test Edildi mi?
-- [ ] Evet, yerel ortamda test edildi
-- [ ] Evet, farklı Windows sürümlerinde test edildi
-- [ ] Evet, farklı Steam kurulumlarında test edildi
-- [ ] Hayır, test edilmedi
+## 🧪 Tested?
+- [ ] Yes, tested in local environment
+- [ ] Yes, tested on different Windows versions
+- [ ] Yes, tested with different Steam installations
+- [ ] No, not tested
 
-## 📸 Ekran Görüntüleri
-Varsa değişiklikleri gösteren ekran görüntüleri ekleyin.
+## 📸 Screenshots
+Add screenshots showing the changes if available.
 
-## ✅ Kontrol Listesi
-PR göndermeden önce aşağıdakileri kontrol edin:
-- [ ] Kod temiz ve anlaşılır
-- [ ] Yorum satırları eklendi (gerekirse)
-- [ ] Dokümantasyon güncellendi
-- [ ] Test edildi ve çalışıyor
-- [ ] Mevcut testler hala geçiyor
-- [ ] Kod standartlarına uygun
+## ✅ Checklist
+Check the following before submitting the PR:
+- [ ] Code is clean and understandable
+- [ ] Comments added (if necessary)
+- [ ] Documentation updated
+- [ ] Tested and working
+- [ ] Existing tests still pass
+- [ ] Code follows standards
 
-## 📝 Ek Notlar
-Reviewerların bilmesi gereken başka bilgiler:
+## 📝 Additional Notes
+Any other information reviewers should know:
 
 ## 🔄 Breaking Changes
-Bu değişiklik mevcut kullanıcıları etkiler mi?
-- [ ] Evet - Breaking change var
-- [ ] Hayır - Geriye uyumlu
+Does this change affect existing users?
+- [ ] Yes - Breaking change exists
+- [ ] No - Backward compatible
 
-Eğer breaking change varsa, detaylarını açıklayın:
+If there are breaking changes, explain the details:
 
-## 📋 Test Senaryoları
-Bu değişiklikleri test etmek için:
+## 📋 Test Scenarios
+To test these changes:
 1. 
 2. 
 3. 
 
-## 🎯 Performans Etkisi
-Bu değişiklik performansı etkiler mi?
-- [ ] Evet - Performans iyileştirmesi
-- [ ] Evet - Performans düşüşü (açıklayın)
-- [ ] Hayır - Performans etkisi yok
+## 🎯 Performance Impact
+Does this change affect performance?
+- [ ] Yes - Performance improvement
+- [ ] Yes - Performance decrease (explain)
+- [ ] No - No performance impact

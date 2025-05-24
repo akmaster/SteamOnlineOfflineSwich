@@ -3,35 +3,35 @@ import os
 import sys
 
 def test_python_installation():
-    """Python kurulumunu test et"""
+    """Test Python installation"""
     try:
         result = subprocess.run([sys.executable, "--version"], capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"✅ Python kurulu: {result.stdout.strip()}")
+            print(f"✅ Python installed: {result.stdout.strip()}")
             return True
         else:
-            print("❌ Python bulunamadı!")
+            print("❌ Python not found!")
             return False
     except Exception as e:
-        print(f"❌ Python test hatası: {e}")
+        print(f"❌ Python test error: {e}")
         return False
 
 def test_admin_rights():
-    """Yönetici yetkilerini test et"""
+    """Test administrator privileges"""
     try:
         import ctypes
         if ctypes.windll.shell32.IsUserAnAdmin():
-            print("✅ Yönetici yetkisi mevcut")
+            print("✅ Administrator privileges available")
             return True
         else:
-            print("⚠️  Yönetici yetkisi yok (firewall işlemleri için gerekli)")
+            print("⚠️  No administrator privileges (required for firewall operations)")
             return False
     except Exception as e:
-        print(f"❌ Yetki kontrolü hatası: {e}")
+        print(f"❌ Privilege check error: {e}")
         return False
 
 def test_steam_detection():
-    """Steam tespitini test et"""
+    """Test Steam detection"""
     possible_paths = [
         "C:\\Program Files (x86)\\Steam\\steam.exe",
         "C:\\Program Files\\Steam\\steam.exe",
@@ -45,67 +45,81 @@ def test_steam_detection():
             found_paths.append(path)
     
     if found_paths:
-        print(f"✅ Steam bulundu: {len(found_paths)} konum")
+        print(f"✅ Steam found: {len(found_paths)} location(s)")
         for path in found_paths:
             print(f"   📁 {path}")
         return True
     else:
-        print("⚠️  Steam bulunamadı (standart konumlarda)")
+        print("⚠️  Steam not found (in standard locations)")
         return False
 
 def test_firewall_access():
-    """Firewall erişimini test et"""
+    """Test firewall access"""
     try:
-        # Basit bir firewall komutu test et
+        # Test a simple firewall command
         result = subprocess.run("netsh advfirewall firewall show rule name=all", 
                                shell=True, capture_output=True, text=True)
         if result.returncode == 0:
-            print("✅ Firewall komutları erişilebilir")
+            print("✅ Firewall commands accessible")
             return True
         else:
-            print("❌ Firewall komutlarına erişim yok")
+            print("❌ No access to firewall commands")
             return False
     except Exception as e:
-        print(f"❌ Firewall test hatası: {e}")
+        print(f"❌ Firewall test error: {e}")
+        return False
+
+def test_psutil_library():
+    """Test psutil library"""
+    try:
+        import psutil
+        print("✅ psutil library available")
+        return True
+    except ImportError:
+        print("❌ psutil library not found (run: pip install psutil)")
+        return False
+    except Exception as e:
+        print(f"❌ psutil test error: {e}")
         return False
 
 def main():
     print("=" * 50)
-    print("Steam Bağlantı Kontrolcüsü - Sistem Testi")
+    print("Steam Connection Controller - System Test")
     print("=" * 50)
     print()
     
     tests = [
-        ("Python Kurulumu", test_python_installation),
-        ("Yönetici Yetkisi", test_admin_rights),
-        ("Steam Tespiti", test_steam_detection),
-        ("Firewall Erişimi", test_firewall_access)
+        ("Python Installation", test_python_installation),
+        ("Administrator Privileges", test_admin_rights),
+        ("Steam Detection", test_steam_detection),
+        ("Firewall Access", test_firewall_access),
+        ("psutil Library", test_psutil_library)
     ]
     
     passed = 0
     total = len(tests)
     
     for test_name, test_func in tests:
-        print(f"🔍 {test_name} test ediliyor...")
+        print(f"🔍 Testing {test_name}...")
         if test_func():
             passed += 1
         print()
     
     print("=" * 50)
-    print(f"Test Sonucu: {passed}/{total} başarılı")
+    print(f"Test Result: {passed}/{total} successful")
     
     if passed == total:
-        print("🎉 Tüm testler başarılı! Program kullanıma hazır.")
+        print("🎉 All tests successful! Program ready to use.")
     elif passed >= total - 1:
-        print("⚠️  Küçük sorunlar var ama program çalışabilir.")
+        print("⚠️  Minor issues exist but program should work.")
     else:
-        print("❌ Ciddi sorunlar var. Lütfen gereksinimleri kontrol edin.")
+        print("❌ Serious issues exist. Please check requirements.")
     
-    print("\n💡 Program çalıştırmak için:")
-    print("   1. steam_controller.bat dosyasına sağ tıklayın")
-    print("   2. 'Yönetici olarak çalıştır' seçeneğini seçin")
+    print("\n💡 To run the program:")
+    print("   1. Right-click on steam_controller.bat")
+    print("   2. Select 'Run as administrator'")
     print("=" * 50)
 
 if __name__ == "__main__":
     main()
-    input("\nÇıkmak için Enter tuşuna basın...")
+    input("\nPress Enter to exit...")

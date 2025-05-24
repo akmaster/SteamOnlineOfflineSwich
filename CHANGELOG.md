@@ -1,121 +1,121 @@
-# Değişiklik Günlüğü
+# Changelog
 
-Bu dosya Steam Bağlantı Kontrolcüsü projesindeki tüm önemli değişiklikleri içerir.
+This file contains all notable changes to the Steam Connection Controller project.
 
-Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standardına dayanır,
-ve bu proje [Semantic Versioning](https://semver.org/spec/v2.0.0.html) kullanır.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Planlanmış Özellikler
-- Zamanlayıcı özelliği (belirli saatlerde otomatik açma/kapama)
-- Profil sistemi (farklı ayar setleri)
-- Sistem tray entegrasyonu
-- Daha fazla Steam yolu desteği
-- Diğer oyun platformları desteği (Epic Games, Origin, vb.)
+### Planned Features
+- Timer feature (automatic on/off at specific times)
+- Profile system (different setting sets)
+- System tray integration
+- Support for more Steam paths
+- Support for other gaming platforms (Epic Games, Origin, etc.)
 
 ## [1.1.0] - 2025-01-24
 
-### Eklenen Özellikler
-- ✨ **Otomatik Steam kapatma/açma sistemi**: Bağlantı değişikliklerinden önce Steam otomatik kapatılır ve sonra yeniden açılır
-- 🔍 Steam süreç kontrolü ve yönetimi (psutil entegrasyonu)
-- ⚡ Gelişmiş kullanıcı geri bildirimi (Steam'ın kapatılacağı konusunda uyarı)
-- 📋 Detaylı işlem durumu gösterimi
-- 🔄 Akıllı Steam yeniden başlatma (sadece önceden çalışıyorsa)
+### Added Features
+- ✨ **Automatic Steam closing/opening system**: Steam is automatically closed before connection changes and then reopened
+- 🔍 Steam process control and management (psutil integration)
+- ⚡ Enhanced user feedback (warning about Steam being closed)
+- 📋 Detailed operation status display
+- 🔄 Smart Steam restart (only if it was running before)
 
-### Geliştirildi
-- 🚀 Daha etkili bağlantı kontrolü (Steam kapatılarak)
-- 💬 Gelişmiş kullanıcı arayüzü mesajları
-- 📊 Daha detaylı işlem raporlama
+### Improved
+- 🚀 More effective connection control (by closing Steam)
+- 💬 Enhanced user interface messages
+- 📊 More detailed operation reporting
 - ⏱️ Optimized timing for Steam operations
 
-### Teknik İyileştirmeler
-- psutil kütüphanesi entegrasyonu
-- Gelişmiş hata yönetimi
-- Thread-safe Steam işlemleri
-- Daha güvenilir süreç kontrolü
+### Technical Improvements
+- psutil library integration
+- Enhanced error handling
+- Thread-safe Steam operations
+- More reliable process control
 
 ## [1.0.0] - 2025-01-24
 
-### Eklenen Özellikler
-- ✨ Steam'ın internet bağlantısını tek tıkla kesme/açma
-- 🎯 Gerçek zamanlı bağlantı durumu göstergesi
-- 🔍 Otomatik Steam yolu tespiti
-- 🛡️ Güvenli Windows Firewall entegrasyonu
-- 🖥️ Kullanıcı dostu GUI arayüzü
-- ⚡ Yönetici yetkisi otomatik kontrolü
-- 📊 Sistem uyumluluğu test aracı
-- 🔄 Durum yenileme özelliği
+### Added Features
+- ✨ Block/allow Steam's internet connection with one click
+- 🎯 Real-time connection status indicator
+- 🔍 Automatic Steam path detection
+- 🛡️ Secure Windows Firewall integration
+- 🖥️ User-friendly GUI interface
+- ⚡ Automatic administrator privilege control
+- 📊 System compatibility test tool
+- 🔄 Status refresh feature
 
-### Teknik Özellikler
-- Python 3.6+ desteği
-- tkinter tabanlı GUI
-- Windows Firewall API entegrasyonu
-- Çoklu Steam kurulum yolu desteği
-- Thread-safe işlemler
-- Hata yönetimi ve kullanıcı geri bildirimi
+### Technical Features
+- Python 3.6+ support
+- tkinter-based GUI
+- Windows Firewall API integration
+- Multiple Steam installation path support
+- Thread-safe operations
+- Error handling and user feedback
 
-### Desteklenen Steam Dosyaları
-- `steam.exe` (Ana Steam uygulaması)
-- `steamwebhelper.exe` (Web tarayıcı bileşeni)
+### Supported Steam Files
+- `steam.exe` (Main Steam application)
+- `steamwebhelper.exe` (Web browser component)
 
-### Desteklenen Steam Yolları
+### Supported Steam Paths
 - `C:\Program Files (x86)\Steam\`
 - `C:\Program Files\Steam\`
 - `D:\Steam\`
 - `E:\Steam\`
 
-### Güvenlik
-- Sadece Windows yerleşik firewall kullanımı
-- Hiçbir üçüncü parti yazılım gerektirmez
-- Steam dosyalarına müdahale etmez
-- Sistem dosyalarını değiştirmez
+### Security
+- Only uses Windows built-in firewall
+- Requires no third-party software
+- Does not interfere with Steam files
+- Does not modify system files
 
-### Dokümantasyon
-- 📖 Kapsamlı README dosyası
-- 🤝 Katkıda bulunma rehberi
-- 🐛 Issue template'leri
-- 📋 Pull request template'i
-- 🔧 Sistem test aracı
+### Documentation
+- 📖 Comprehensive README file
+- 🤝 Contributing guide
+- 🐛 Issue templates
+- 📋 Pull request template
+- 🔧 System test tool
 
-### GitHub Entegrasyonu
-- 🔄 Otomatik test workflow'u
-- 📦 Otomatik release oluşturma
-- 🏷️ Issue ve PR template'leri
-- 📊 Kod kalitesi kontrolleri
-- 🔒 Güvenlik taramaları
+### GitHub Integration
+- 🔄 Automatic test workflow
+- 📦 Automatic release creation
+- 🏷️ Issue and PR templates
+- 📊 Code quality checks
+- 🔒 Security scans
 
-## Sürüm Notları
+## Release Notes
 
-### [1.0.0] Hakkında
-Bu ilk stabil sürüm, Steam'ın internet bağlantısını güvenli ve kolay bir şekilde kontrol etmek için gerekli tüm temel özellikleri içerir. Program Windows Firewall kuralları kullanarak Steam'ın internet erişimini yönetir ve kullanıcı dostu bir arayüz sunar.
+### About [1.0.0]
+This first stable release includes all essential features needed to safely and easily control Steam's internet connection. The program uses Windows Firewall rules to manage Steam's internet access and provides a user-friendly interface.
 
-### Bilinen Sınırlamalar
-- Sadece Windows işletim sistemlerinde çalışır
-- Yönetici yetkisi gerektirir
-- Standart Steam kurulum yollarını destekler
-- Firewall kuralları manuel olarak silinebilir
+### Known Limitations
+- Only works on Windows operating systems
+- Requires administrator privileges
+- Supports standard Steam installation paths
+- Firewall rules can be manually deleted
 
-### Gelecek Sürümler
-Gelecek sürümlerde daha fazla özellik, daha iyi hata yönetimi ve genişletilmiş platform desteği planlanmaktadır.
+### Future Releases
+Future releases will include more features, better error handling, and expanded platform support.
 
 ---
 
-## Etiket Açıklamaları
+## Tag Descriptions
 
-- `Added` - Yeni özellikler
-- `Changed` - Mevcut işlevsellikte değişiklikler
-- `Deprecated` - Yakında kaldırılacak özellikler
-- `Removed` - Kaldırılan özellikler
-- `Fixed` - Hata düzeltmeleri
-- `Security` - Güvenlik ile ilgili değişiklikler
+- `Added` - New features
+- `Changed` - Changes in existing functionality
+- `Deprecated` - Features that will be removed soon
+- `Removed` - Removed features
+- `Fixed` - Bug fixes
+- `Security` - Security-related changes
 
-## Katkıda Bulunma
+## Contributing
 
-Değişiklik günlüğüne katkıda bulunmak için:
-1. Her PR'da ilgili değişiklikleri `[Unreleased]` bölümüne ekleyin
-2. Uygun etiketleri kullanın
-3. Kullanıcı dostu açıklamalar yazın
-4. Teknik detayları gerekirse ekleyin
+To contribute to the changelog:
+1. Add relevant changes to the `[Unreleased]` section in each PR
+2. Use appropriate tags
+3. Write user-friendly descriptions
+4. Add technical details if necessary
 
-Daha fazla bilgi için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasını inceleyin.
+For more information, see [CONTRIBUTING.md](CONTRIBUTING.md).

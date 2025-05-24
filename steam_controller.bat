@@ -1,8 +1,8 @@
 @echo off
-title Steam Bağlantı Kontrolcüsü
-echo Steam Bağlantı Kontrolcüsü başlatılıyor...
+title Steam Connection Controller
+echo Starting Steam Connection Controller...
 echo.
-echo Not: Bu program yönetici yetkisi gerektirir.
+echo Note: This program requires administrator privileges.
 echo.
 python steam_connection_controller.py
 pause

@@ -1,41 +1,41 @@
 ---
-name: 🐛 Hata Raporu
-about: Programda karşılaştığınız bir hatayı bildirin
-title: '[HATA] '
+name: 🐛 Bug Report
+about: Report a bug you encountered in the program
+title: '[BUG] '
 labels: 'bug'
 assignees: ''
 
 ---
 
-## 🐛 Hata Açıklaması
-Karşılaştığınız hatayı kısaca açıklayın.
+## 🐛 Bug Description
+Briefly describe the bug you encountered.
 
-## 🔄 Hatayı Tekrarlama Adımları
-Hatayı tekrarlamak için izlenen adımlar:
-1. '...' git
-2. '...' tıkla
-3. '...' yap
-4. Hatayı gör
+## 🔄 Steps to Reproduce
+Steps to reproduce the bug:
+1. Go to '...'
+2. Click on '...'
+3. Do '...'
+4. See error
 
-## ✅ Beklenen Davranış
-Ne olmasını bekliyordunuz?
+## ✅ Expected Behavior
+What did you expect to happen?
 
-## ❌ Gerçek Davranış
-Gerçekte ne oldu?
+## ❌ Actual Behavior
+What actually happened?
 
-## 📸 Ekran Görüntüleri
-Varsa ekran görüntülerini ekleyin.
+## 📸 Screenshots
+Add screenshots if available.
 
-## 💻 Sistem Bilgileri
-- İşletim Sistemi: [örn. Windows 11]
-- Python Sürümü: [örn. 3.13.2]
-- Steam Kurulum Yolu: [örn. C:\Program Files (x86)\Steam\]
-- Yönetici Yetkisi: [Evet/Hayır]
+## 💻 System Information
+- Operating System: [e.g. Windows 11]
+- Python Version: [e.g. 3.13.2]
+- Steam Installation Path: [e.g. C:\Program Files (x86)\Steam\]
+- Administrator Rights: [Yes/No]
 
-## 📋 Ek Bilgiler
-Hatayı daha iyi anlamamıza yardımcı olacak başka bilgiler varsa ekleyin.
+## 📋 Additional Information
+Add any other information that would help us understand the bug better.
 
-## 🔍 Hata Mesajları
-Varsa tam hata mesajlarını buraya yapıştırın:
+## 🔍 Error Messages
+If there are any error messages, paste them here:
 ```
-Hata mesajı buraya
+Error message here

@@ -1,36 +1,36 @@
 ---
-name: ✨ Özellik İsteği
-about: Programa yeni bir özellik eklenmesini önerin
-title: '[ÖZELLİK] '
+name: ✨ Feature Request
+about: Suggest a new feature to be added to the program
+title: '[FEATURE] '
 labels: 'enhancement'
 assignees: ''
 
 ---
 
-## ✨ Özellik Açıklaması
-İstediğiniz özelliği kısaca açıklayın.
+## ✨ Feature Description
+Briefly describe the feature you want.
 
-## 🎯 Motivasyon
-Bu özelliğe neden ihtiyaç duyuyorsunuz? Hangi sorunu çözecek?
+## 🎯 Motivation
+Why do you need this feature? What problem will it solve?
 
-## 💡 Önerilen Çözüm
-Bu özelliğin nasıl çalışmasını istiyorsunuz?
+## 💡 Proposed Solution
+How do you want this feature to work?
 
-## 🔄 Alternatif Çözümler
-Düşündüğünüz başka çözümler var mı?
+## 🔄 Alternative Solutions
+Are there any other solutions you've considered?
 
-## 📋 Ek Bilgiler
-Bu özellik hakkında başka eklemek istediğiniz bilgiler:
+## 📋 Additional Information
+Any other information you'd like to add about this feature:
 
-## 🎨 Mockup/Tasarım
-Varsa özelliğin nasıl görünmesini istediğinize dair görsel örnekler ekleyin.
+## 🎨 Mockup/Design
+If available, add visual examples of how you want the feature to look.
 
-## ⚖️ Öncelik
-Bu özelliğin sizin için öncelik seviyesi:
-- [ ] Düşük
-- [ ] Orta
-- [ ] Yüksek
-- [ ] Kritik
+## ⚖️ Priority
+Priority level of this feature for you:
+- [ ] Low
+- [ ] Medium
+- [ ] High
+- [ ] Critical
 
-## 🔗 İlgili Konular
-Bu özellik isteği ile ilgili başka issue'lar varsa linkleyin.
+## 🔗 Related Issues
+Link any related issues if this feature request is connected to others.

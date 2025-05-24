@@ -1,48 +1,48 @@
 ---
-name: 🆘 Destek İsteği
-about: Programı kullanırken yardıma ihtiyacınız var
-title: '[DESTEK] '
+name: 🆘 Support Request
+about: You need help using the program
+title: '[SUPPORT] '
 labels: 'question'
 assignees: ''
 
 ---
 
-## 🆘 Destek Konusu
-Hangi konuda yardıma ihtiyacınız var?
+## 🆘 Support Topic
+What do you need help with?
 
-## 📝 Detaylı Açıklama
-Sorununuzu detaylı olarak açıklayın:
+## 📝 Detailed Description
+Describe your problem in detail:
 
-## 🔍 Denediğiniz Çözümler
-Bu sorunu çözmek için neler denediniz?
-- [ ] README dosyasını okudum
-- [ ] Sorun giderme bölümünü kontrol ettim
-- [ ] Programı yönetici olarak çalıştırdım
-- [ ] Steam yollarını kontrol ettim
-- [ ] Diğer: ___________
+## 🔍 Solutions You've Tried
+What have you tried to solve this problem?
+- [ ] I read the README file
+- [ ] I checked the troubleshooting section
+- [ ] I ran the program as administrator
+- [ ] I checked Steam paths
+- [ ] Other: ___________
 
-## 💻 Sistem Bilgileri
-- İşletim Sistemi: [örn. Windows 11]
-- Python Sürümü: [örn. 3.13.2]
-- Steam Kurulu mu: [Evet/Hayır]
-- Steam Yolu: [örn. C:\Program Files (x86)\Steam\]
-- Yönetici Yetkisi: [Evet/Hayır]
+## 💻 System Information
+- Operating System: [e.g. Windows 11]
+- Python Version: [e.g. 3.13.2]
+- Steam Installed: [Yes/No]
+- Steam Path: [e.g. C:\Program Files (x86)\Steam\]
+- Administrator Rights: [Yes/No]
 
-## 📸 Ekran Görüntüleri
-Sorununuzu gösteren ekran görüntüleri varsa ekleyin.
+## 📸 Screenshots
+Add screenshots showing your problem if available.
 
-## 🔍 Hata Mesajları
-Aldığınız hata mesajları varsa buraya yapıştırın:
+## 🔍 Error Messages
+If you received any error messages, paste them here:
 ```
-Hata mesajı buraya
+Error message here
 ```
 
-## ⏰ Aciliyet
-Bu sorunun sizin için aciliyet seviyesi:
-- [ ] Düşük - Zaman var
-- [ ] Orta - Birkaç gün içinde
-- [ ] Yüksek - Bugün çözmek istiyorum
-- [ ] Kritik - Acil yardım gerekli
+## ⏰ Urgency
+Urgency level of this problem for you:
+- [ ] Low - I have time
+- [ ] Medium - Within a few days
+- [ ] High - I want to solve it today
+- [ ] Critical - Urgent help needed
 
-## 📋 Ek Bilgiler
-Sorununuzu daha iyi anlamamıza yardımcı olacak başka bilgiler:
+## 📋 Additional Information
+Any other information that would help us understand your problem better:

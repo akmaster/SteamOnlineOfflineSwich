@@ -1,4 +1,4 @@
-# Steam Bağlantı Kontrolcüsü
+# Steam Connection Controller
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/username/steam-connection-controller)
 ![GitHub](https://img.shields.io/github/license/username/steam-connection-controller)
@@ -8,129 +8,135 @@
 ![GitHub issues](https://img.shields.io/github/issues/username/steam-connection-controller)
 ![GitHub stars](https://img.shields.io/github/stars/username/steam-connection-controller)
 
-Windows için Steam'ın internet bağlantısını kontrol eden basit ve etkili bir program.
+A simple and effective program to control Steam's internet connection on Windows.
 
-> **Not:** Bu program sadece Windows işletim sistemlerinde çalışır ve yönetici yetkisi gerektirir.
+> **Note:** This program only works on Windows operating systems and requires administrator privileges.
 
-## Özellikler
+## Features
 
-- ✅ Steam'ın internet bağlantısını tek tıkla kesme
-- ✅ Steam'ın internet bağlantısını tek tıkla açma
-- ✅ **Otomatik Steam kapatma/açma** (işlem öncesi ve sonrası)
-- ✅ Gerçek zamanlı bağlantı durumu göstergesi
-- ✅ Otomatik Steam yolu tespiti
-- ✅ Steam süreç kontrolü ve yönetimi
-- ✅ Güvenli Windows Firewall entegrasyonu
-- ✅ Kullanıcı dostu arayüz
+- ✅ Block Steam's internet connection with one click
+- ✅ Allow Steam's internet connection with one click
+- ✅ **Automatic Steam closing/opening** (before and after operations)
+- ✅ Real-time connection status indicator
+- ✅ Automatic Steam path detection
+- ✅ Steam process control and management
+- ✅ Secure Windows Firewall integration
+- ✅ User-friendly interface
 
-## Gereksinimler
+## Requirements
 
 - Windows 10/11
-- Python 3.6 veya üzeri
-- psutil kütüphanesi (`pip install psutil`)
-- Yönetici yetkisi (firewall kuralları için)
-- Steam kurulu olmalı
+- Python 3.6 or higher
+- psutil library (`pip install psutil`)
+- Administrator privileges (for firewall rules)
+- Steam must be installed
 
-## Kurulum
+## Installation
 
-1. Bu dosyaları bir klasöre indirin
-2. Python'un sisteminizde kurulu olduğundan emin olun
-3. Gerekli kütüphaneyi kurun:
+1. Download these files to a folder
+2. Make sure Python is installed on your system
+3. Install the required library:
    ```bash
    pip install psutil
    ```
-   veya
+   or
    ```bash
    pip install -r requirements.txt
    ```
-4. `steam_controller.bat` dosyasını **yönetici olarak çalıştırın**
+4. Run `steam_controller.bat` **as administrator**
 
-## Kullanım
+## Usage
 
-### İlk Çalıştırma
-1. `steam_controller.bat` dosyasına sağ tıklayın
-2. "Yönetici olarak çalıştır" seçeneğini seçin
-3. Program otomatik olarak Steam'ı bulacak ve durumu gösterecek
+### First Run
+1. Right-click on `steam_controller.bat`
+2. Select "Run as administrator"
+3. The program will automatically find Steam and show the status
 
-### Ana Özellikler
+### Main Features
 
-#### Bağlantıyı Kesme
-- "Bağlantıyı Kes" butonuna tıklayın
-- Steam çalışıyorsa otomatik olarak kapatılacak
-- Program Steam'ın tüm internet erişimini engelleyecek
-- Steam yeniden başlatılacak (eğer önceden çalışıyorsa)
-- Durum göstergesi kırmızı olacak
+#### Block Connection
+- Click the "Block Connection" button
+- Steam will be automatically closed if running
+- The program will block all Steam internet access
+- Steam will be restarted (if it was running before)
+- Status indicator will turn red
 
-#### Bağlantıyı Açma
-- "Bağlantıyı Aç" butonuna tıklayın
-- Steam çalışıyorsa otomatik olarak kapatılacak
-- Program Steam'ın internet erişim engelini kaldıracak
-- Steam yeniden başlatılacak (eğer önceden çalışıyorsa)
-- Durum göstergesi yeşil olacak
+#### Allow Connection
+- Click the "Allow Connection" button
+- Steam will be automatically closed if running
+- The program will remove Steam's internet access block
+- Steam will be restarted (if it was running before)
+- Status indicator will turn green
 
-#### Durum Kontrolü
-- Program açıldığında otomatik olarak durumu kontrol eder
-- "Durumu Yenile" butonu ile manuel kontrol yapabilirsiniz
+#### Status Check
+- The program automatically checks status on startup
+- Use "Refresh Status" button for manual checking
 
-## Teknik Detaylar
+## Technical Details
 
-### Nasıl Çalışır?
-Program Windows Firewall kuralları kullanarak Steam'ın internet erişimini kontrol eder:
+### How It Works
+The program uses Windows Firewall rules to control Steam's internet access:
 
-1. **Steam Tespiti**: Yaygın Steam kurulum yollarını tarar
-2. **Firewall Kuralları**: Steam executable dosyaları için gelen/giden trafiği engeller
-3. **Durum Takibi**: Mevcut firewall kurallarını kontrol ederek durumu gösterir
+1. **Steam Detection**: Scans common Steam installation paths
+2. **Firewall Rules**: Blocks incoming/outgoing traffic for Steam executable files
+3. **Status Tracking**: Checks existing firewall rules to show current status
 
-### Güvenlik
-- Sadece Windows'un yerleşik firewall özelliklerini kullanır
-- Hiçbir üçüncü parti yazılım gerektirmez
-- Steam dosyalarını değiştirmez
-- Sistem dosyalarına müdahale etmez
+### Security
+- Only uses Windows built-in firewall features
+- Requires no third-party software
+- Does not modify Steam files
+- Does not interfere with system files
 
-### Desteklenen Steam Dosyaları
-- `steam.exe` (Ana Steam uygulaması)
-- `steamwebhelper.exe` (Web tarayıcı bileşeni)
+### Supported Steam Files
+- `steam.exe` (Main Steam application)
+- `steamwebhelper.exe` (Web browser component)
 
-## Sorun Giderme
+### Supported Steam Paths
+- `C:\Program Files (x86)\Steam\`
+- `C:\Program Files\Steam\`
+- `D:\Steam\`
+- `E:\Steam\`
 
-### "Steam bulunamadı" Hatası
-- Steam'ın standart konumlarda kurulu olduğundan emin olun
-- Desteklenen yollar:
+## Troubleshooting
+
+### "Steam not found" Error
+- Make sure Steam is installed in standard locations
+- Supported paths:
   - `C:\Program Files (x86)\Steam\`
   - `C:\Program Files\Steam\`
   - `D:\Steam\`
   - `E:\Steam\`
 
-### "Yönetici yetkisi gerekli" Hatası
-- Programı mutlaka "Yönetici olarak çalıştır" ile başlatın
-- Windows Firewall kuralları yönetici yetkisi gerektirir
+### "Administrator privileges required" Error
+- Always run the program with "Run as administrator"
+- Windows Firewall rules require administrator privileges
 
-### Bağlantı Durumu Yanlış Görünüyor
-- "Durumu Yenile" butonuna tıklayın
-- Steam'ı yeniden başlatın
-- Programı kapatıp yeniden açın
+### Connection Status Appears Wrong
+- Click "Refresh Status" button
+- Restart Steam
+- Close and reopen the program
 
-## Sık Sorulan Sorular
+## Frequently Asked Questions
 
-**S: Steam açıkken bu programı kullanabilir miyim?**
-C: Evet, Steam açıkken de kullanabilirsiniz. Değişiklikler anında etkili olur.
+**Q: Can I use this program while Steam is open?**
+A: Yes, you can use it while Steam is open. Changes take effect immediately.
 
-**S: Bu program Steam'ı bozar mı?**
-C: Hayır, sadece firewall kuralları oluşturur. Steam dosyalarına dokunmaz.
+**Q: Does this program damage Steam?**
+A: No, it only creates firewall rules. It doesn't touch Steam files.
 
-**S: Programı kapattıktan sonra ayarlar kalır mı?**
-C: Evet, firewall kuralları Windows'ta kalıcıdır. Programı kapatmak ayarları etkilemez.
+**Q: Do settings persist after closing the program?**
+A: Yes, firewall rules are persistent in Windows. Closing the program doesn't affect settings.
 
-**S: Diğer oyunları etkiler mi?**
-C: Hayır, sadece Steam'a özel kurallar oluşturur.
+**Q: Does it affect other games?**
+A: No, it only creates Steam-specific rules.
 
-## Lisans
+## License
 
-Bu program eğitim amaçlı oluşturulmuştur. Kendi sorumluluğunuzda kullanın.
+This program is created for educational purposes. Use at your own risk.
 
-## Destek
+## Support
 
-Sorunlarınız için:
-1. README dosyasını kontrol edin
-2. Sorun giderme bölümünü inceleyin
-3. Programı yönetici olarak çalıştırdığınızdan emin olun
+For issues:
+1. Check the README file
+2. Review the troubleshooting section
+3. Make sure you're running the program as administrator

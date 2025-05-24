@@ -1,189 +1,189 @@
-# Katkıda Bulunma Rehberi
+# Contributing Guide
 
-Steam Bağlantı Kontrolcüsü projesine katkıda bulunmak istediğiniz için teşekkürler! 🎉
+Thank you for wanting to contribute to the Steam Connection Controller project! 🎉
 
-## 📋 İçindekiler
-- [Katkı Türleri](#katkı-türleri)
-- [Geliştirme Ortamı](#geliştirme-ortamı)
-- [Kod Standartları](#kod-standartları)
-- [Pull Request Süreci](#pull-request-süreci)
-- [Issue Raporlama](#issue-raporlama)
-- [Topluluk Kuralları](#topluluk-kuralları)
+## 📋 Table of Contents
+- [Types of Contributions](#types-of-contributions)
+- [Development Environment](#development-environment)
+- [Code Standards](#code-standards)
+- [Pull Request Process](#pull-request-process)
+- [Issue Reporting](#issue-reporting)
+- [Community Guidelines](#community-guidelines)
 
-## 🤝 Katkı Türleri
+## 🤝 Types of Contributions
 
-### 🐛 Hata Raporları
-- Karşılaştığınız hataları [bug report template](/.github/ISSUE_TEMPLATE/bug_report.md) kullanarak bildirin
-- Hatayı tekrarlama adımlarını detaylı olarak açıklayın
-- Sistem bilgilerinizi ekleyin
+### 🐛 Bug Reports
+- Report bugs you encounter using the [bug report template](/.github/ISSUE_TEMPLATE/bug_report.md)
+- Describe the steps to reproduce the bug in detail
+- Include your system information
 
-### ✨ Özellik Önerileri
-- Yeni özellik fikirlerinizi [feature request template](/.github/ISSUE_TEMPLATE/feature_request.md) ile paylaşın
-- Özelliğin neden gerekli olduğunu açıklayın
-- Mümkünse mockup veya tasarım örnekleri ekleyin
+### ✨ Feature Suggestions
+- Share your new feature ideas using the [feature request template](/.github/ISSUE_TEMPLATE/feature_request.md)
+- Explain why this feature is needed
+- Include mockups or design examples if possible
 
-### 📝 Dokümantasyon
-- README dosyasını iyileştirin
-- Kod yorumlarını geliştirin
-- Kullanım kılavuzunu genişletin
+### 📝 Documentation
+- Improve the README file
+- Enhance code comments
+- Expand the user guide
 
-### 💻 Kod Katkıları
-- Hata düzeltmeleri
-- Yeni özellikler
-- Performans iyileştirmeleri
-- Kod refactoring
+### 💻 Code Contributions
+- Bug fixes
+- New features
+- Performance improvements
+- Code refactoring
 
-## 🛠️ Geliştirme Ortamı
+## 🛠️ Development Environment
 
-### Gereksinimler
+### Requirements
 - Windows 10/11
 - Python 3.6+
 - Git
-- Yönetici yetkisi (test için)
+- Administrator privileges (for testing)
 
-### Kurulum
-1. Repository'yi fork edin
-2. Yerel makinenize clone edin:
+### Setup
+1. Fork the repository
+2. Clone to your local machine:
    ```bash
-   git clone https://github.com/KULLANICI_ADINIZ/steam-connection-controller.git
+   git clone https://github.com/YOUR_USERNAME/steam-connection-controller.git
    cd steam-connection-controller
    ```
-3. Test programını çalıştırın:
+3. Run the test program:
    ```bash
    python test_program.py
    ```
 
-### Geliştirme Dalları
-- `main`: Stabil sürüm
-- `develop`: Geliştirme dalı
-- `feature/özellik-adı`: Yeni özellikler
-- `bugfix/hata-adı`: Hata düzeltmeleri
+### Development Branches
+- `main`: Stable version
+- `develop`: Development branch
+- `feature/feature-name`: New features
+- `bugfix/bug-name`: Bug fixes
 
-## 📏 Kod Standartları
+## 📏 Code Standards
 
-### Python Kod Stili
-- PEP 8 standartlarını takip edin
-- Fonksiyon ve değişken isimleri Türkçe olabilir
-- Docstring'leri Türkçe yazın
+### Python Code Style
+- Follow PEP 8 standards
+- Function and variable names can be in English
+- Write docstrings in English
 
-### Örnek Kod Formatı
+### Example Code Format
 ```python
-def steam_baglantisini_kes(self):
-    """Steam'ın internet bağlantısını keser.
+def block_steam_connection(self):
+    """Block Steam's internet connection.
     
     Returns:
-        bool: İşlem başarılı ise True, değilse False
+        bool: True if operation successful, False otherwise
     """
     try:
-        # Kod burada
+        # Code here
         return True
     except Exception as e:
-        print(f"Hata: {e}")
+        print(f"Error: {e}")
         return False
 ```
 
-### Commit Mesajları
-Türkçe commit mesajları kullanın:
-- `feat: yeni özellik eklendi`
-- `fix: hata düzeltildi`
-- `docs: dokümantasyon güncellendi`
-- `style: kod formatı düzeltildi`
-- `refactor: kod yeniden düzenlendi`
-- `test: test eklendi`
+### Commit Messages
+Use English commit messages:
+- `feat: add new feature`
+- `fix: fix bug`
+- `docs: update documentation`
+- `style: fix code formatting`
+- `refactor: refactor code`
+- `test: add tests`
 
-## 🔄 Pull Request Süreci
+## 🔄 Pull Request Process
 
-### 1. Hazırlık
-- Issue oluşturun veya mevcut bir issue'yu seçin
-- Feature branch oluşturun:
+### 1. Preparation
+- Create an issue or choose an existing one
+- Create a feature branch:
   ```bash
-  git checkout -b feature/yeni-ozellik
+  git checkout -b feature/new-feature
   ```
 
-### 2. Geliştirme
-- Değişikliklerinizi yapın
-- Kod standartlarına uyun
-- Test edin
+### 2. Development
+- Make your changes
+- Follow code standards
+- Test your changes
 
-### 3. Test
-- Programı farklı senaryolarda test edin
-- `test_program.py` ile sistem testlerini çalıştırın
-- Mevcut özelliklerin bozulmadığından emin olun
+### 3. Testing
+- Test the program in different scenarios
+- Run system tests with `test_program.py`
+- Ensure existing features still work
 
-### 4. Commit ve Push
+### 4. Commit and Push
 ```bash
 git add .
-git commit -m "feat: yeni özellik açıklaması"
-git push origin feature/yeni-ozellik
+git commit -m "feat: new feature description"
+git push origin feature/new-feature
 ```
 
 ### 5. Pull Request
-- GitHub'da PR oluşturun
-- [PR template](/.github/pull_request_template.md) doldurun
-- Reviewerları bekleyin
+- Create a PR on GitHub
+- Fill out the [PR template](/.github/pull_request_template.md)
+- Wait for reviewers
 
-## 🐛 Issue Raporlama
+## 🐛 Issue Reporting
 
-### Hata Raporları
-1. Önce mevcut issue'ları kontrol edin
-2. Hatayı tekrarlayabildiğinizden emin olun
-3. Template'i eksiksiz doldurun
-4. Ekran görüntüleri ekleyin
+### Bug Reports
+1. Check existing issues first
+2. Make sure you can reproduce the bug
+3. Fill out the template completely
+4. Include screenshots
 
-### Özellik İstekleri
-1. Özelliğin gerekliliğini açıklayın
-2. Kullanım senaryolarını belirtin
-3. Teknik detayları ekleyin
+### Feature Requests
+1. Explain the necessity of the feature
+2. Define use cases
+3. Include technical details
 
-## 👥 Topluluk Kuralları
+## 👥 Community Guidelines
 
-### Davranış Kuralları
-- Saygılı ve yapıcı olun
-- Türkçe iletişim kurun
-- Yardımlaşmaya açık olun
-- Eleştirileri yapıcı şekilde alın
+### Code of Conduct
+- Be respectful and constructive
+- Communicate in English
+- Be open to collaboration
+- Accept criticism constructively
 
-### İletişim Kanalları
-- GitHub Issues: Hata raporları ve özellik istekleri
-- GitHub Discussions: Genel tartışmalar
-- Pull Request yorumları: Kod incelemeleri
+### Communication Channels
+- GitHub Issues: Bug reports and feature requests
+- GitHub Discussions: General discussions
+- Pull Request comments: Code reviews
 
-## 🏷️ Etiketler (Labels)
+## 🏷️ Labels
 
-### Issue Etiketleri
-- `bug`: Hata raporları
-- `enhancement`: Özellik istekleri
-- `question`: Sorular ve destek
-- `documentation`: Dokümantasyon
-- `good first issue`: Yeni başlayanlar için
-- `help wanted`: Yardım istenen konular
+### Issue Labels
+- `bug`: Bug reports
+- `enhancement`: Feature requests
+- `question`: Questions and support
+- `documentation`: Documentation
+- `good first issue`: Good for beginners
+- `help wanted`: Help needed topics
 
-### Öncelik Etiketleri
-- `priority: low`: Düşük öncelik
-- `priority: medium`: Orta öncelik
-- `priority: high`: Yüksek öncelik
-- `priority: critical`: Kritik
+### Priority Labels
+- `priority: low`: Low priority
+- `priority: medium`: Medium priority
+- `priority: high`: High priority
+- `priority: critical`: Critical
 
-## 🎯 Geliştirme Hedefleri
+## 🎯 Development Goals
 
-### Kısa Vadeli
-- [ ] Daha fazla Steam yolu desteği
-- [ ] Gelişmiş hata yönetimi
-- [ ] UI iyileştirmeleri
+### Short Term
+- [ ] Support for more Steam paths
+- [ ] Enhanced error handling
+- [ ] UI improvements
 
-### Uzun Vadeli
-- [ ] Diğer oyun platformları desteği
-- [ ] Zamanlayıcı özelliği
-- [ ] Profil sistemi
+### Long Term
+- [ ] Support for other gaming platforms
+- [ ] Timer feature
+- [ ] Profile system
 
-## 📞 Yardım
+## 📞 Help
 
-Sorularınız için:
-1. [Support template](/.github/ISSUE_TEMPLATE/support_request.md) kullanın
-2. Mevcut dokümantasyonu kontrol edin
-3. GitHub Discussions'ı kullanın
+For questions:
+1. Use the [Support template](/.github/ISSUE_TEMPLATE/support_request.md)
+2. Check existing documentation
+3. Use GitHub Discussions
 
 ---
 
-**Teşekkürler!** 🙏
-Katkılarınız bu projeyi daha iyi hale getiriyor.
+**Thank you!** 🙏
+Your contributions make this project better.
