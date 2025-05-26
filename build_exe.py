@@ -5,18 +5,18 @@ import sys
 
 def build_executable():
     """Build the executable using PyInstaller"""
-    print("Building Steam Connection Controller executable...")
+    print("Building Game Client Connection Controller executable...")
     
     # PyInstaller command
     cmd = [
         "pyinstaller",
         "--onefile",                    # Single executable file
         "--windowed",                   # No console window
-        "--name", "SteamConnectionController",  # Output name
+        "--name", "GameClientController",  # Output name
         "--add-data", "requirements.txt;.",     # Include requirements
         "--hidden-import", "psutil",            # Ensure psutil is included
         "--hidden-import", "tkinter",           # Ensure tkinter is included
-        "steam_connection_controller.py"
+        "game_client_controller.py" # Python dosya adı güncellendi
     ]
     
     # Add icon if exists
@@ -36,31 +36,38 @@ def build_executable():
         
         # Copy files to release folder
         files_to_copy = [
-            ("dist/SteamConnectionController.exe", "SteamConnectionController.exe"),
+            ("dist/GameClientController.exe", "GameClientController.exe"), # .exe adı güncellendi
             ("README.md", "README.md"),
             ("LICENSE", "LICENSE"),
             ("CHANGELOG.md", "CHANGELOG.md"),
             ("requirements.txt", "requirements.txt"),
-            ("test_program.py", "test_program.py")
+            ("test_program.py", "test_program.py"),
+            ("game_client_controller.bat", "GameClientController.bat") # Yeni .bat dosyası eklendi (opsiyonel, aşağıdaki ile çakışabilir)
         ]
         
         for src, dst in files_to_copy:
-            if os.path.exists(src):
+            if src == "game_client_controller.bat" and os.path.exists(src): # Eğer ana dizindeki .bat kopyalanıyorsa
+                 shutil.copy2(src, f"release/{dst}")
+                 print(f"✅ Copied {dst} (from root)")
+            elif os.path.exists(src):
                 shutil.copy2(src, f"release/{dst}")
                 print(f"✅ Copied {dst}")
         
-        # Create a simple batch file for the exe
-        with open("release/SteamConnectionController.bat", "w") as f:
+        # Create a simple batch file for the exe (veya yukarıdakini kullan)
+        # Eğer yukarıda game_client_controller.bat kopyalandıysa bu kısım gereksiz olabilir
+        # veya bu kısım release içindeki .bat'ı oluşturur. Tutarlılık için birini seçmek iyi olur.
+        # Şimdilik bu kısmı bırakıyorum, release içinde yeni bir .bat oluşturacak.
+        with open("release/GameClientController.bat", "w") as f: # .bat adı güncellendi
             f.write("@echo off\n")
-            f.write("title Steam Connection Controller\n")
-            f.write("echo Starting Steam Connection Controller...\n")
+            f.write("title Game Client Connection Controller\n") # Başlık güncellendi
+            f.write("echo Starting Game Client Connection Controller...\n") # Metin güncellendi
             f.write("echo.\n")
             f.write("echo Note: This program requires administrator privileges.\n")
             f.write("echo.\n")
-            f.write("SteamConnectionController.exe\n")
+            f.write("GameClientController.exe\n") # .exe adı güncellendi
             f.write("pause\n")
         
-        print("✅ Created SteamConnectionController.bat")
+        print("✅ Created GameClientController.bat in release folder") # Mesaj güncellendi
         
         print("\n🎉 Release package created in 'release' folder!")
         print("📦 Files included:")
@@ -80,7 +87,7 @@ def build_executable():
 def clean_build_files():
     """Clean up build artifacts"""
     folders_to_remove = ["build", "dist", "__pycache__"]
-    files_to_remove = ["SteamConnectionController.spec"]
+    files_to_remove = ["GameClientController.spec"] # .spec adı güncellendi
     
     for folder in folders_to_remove:
         if os.path.exists(folder):
@@ -94,7 +101,7 @@ def clean_build_files():
 
 if __name__ == "__main__":
     print("=" * 50)
-    print("Steam Connection Controller - Build Script")
+    print("Game Client Connection Controller - Build Script") # Başlık güncellendi
     print("=" * 50)
     
     if build_executable():

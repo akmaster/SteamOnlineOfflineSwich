@@ -27,57 +27,58 @@ jobs:
     
     - name: Build executable
       run: |
-        pyinstaller --onefile --windowed --name "SteamConnectionController" steam_connection_controller.py
+        pyinstaller --onefile --windowed --name "GameClientController" game_client_controller.py
     
     - name: Create release package
       run: |
         mkdir release
-        copy dist\SteamConnectionController.exe release\
+        copy dist\GameClientController.exe release\
         copy README.md release\
         copy LICENSE release\
         copy CHANGELOG.md release\
         copy requirements.txt release\
         copy test_program.py release\
-        echo @echo off > release\SteamConnectionController.bat
-        echo title Steam Connection Controller >> release\SteamConnectionController.bat
-        echo echo Starting Steam Connection Controller... >> release\SteamConnectionController.bat
-        echo echo. >> release\SteamConnectionController.bat
-        echo echo Note: This program requires administrator privileges. >> release\SteamConnectionController.bat
-        echo echo. >> release\SteamConnectionController.bat
-        echo SteamConnectionController.exe >> release\SteamConnectionController.bat
-        echo pause >> release\SteamConnectionController.bat
+        copy game_client_controller.bat release\GameClientController.bat
+        echo @echo off > release\GameClientController.bat
+        echo title Game Client Connection Controller >> release\GameClientController.bat
+        echo echo Starting Game Client Connection Controller... >> release\GameClientController.bat
+        echo echo. >> release\GameClientController.bat
+        echo echo Note: This program requires administrator privileges. >> release\GameClientController.bat
+        echo echo. >> release\GameClientController.bat
+        echo GameClientController.exe >> release\GameClientController.bat
+        echo pause >> release\GameClientController.bat
     
     - name: Create ZIP archive
       run: |
-        powershell Compress-Archive -Path release\* -DestinationPath SteamConnectionController_${{ github.ref_name }}.zip
+        powershell Compress-Archive -Path release\* -DestinationPath GameClientController_${{ github.ref_name }}.zip
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        name: Steam Connection Controller ${{ github.ref_name }}
+        name: Game Client Connection Controller ${{ github.ref_name }}
         body: |
-          ## Steam Connection Controller ${{ github.ref_name }}
+          ## Game Client Connection Controller ${{ github.ref_name }}
           
           ### 🎉 New Release Features
-          - Control Steam's internet connection with one click
+          - Control internet connection for multiple game clients (Steam, Ubisoft Connect, EA Play, Rockstar Launcher)
           - User-friendly interface
-          - Automatic Steam detection system
+          - Automatic client detection system
           - Secure Windows Firewall integration
-          - Automatic Steam management (close/restart)
+          - Automatic client management (close/restart)
           
           ### 📦 Download
-          - **SteamConnectionController_${{ github.ref_name }}.zip**: Complete package (recommended)
-          - **SteamConnectionController.exe**: Standalone executable file
+          - **GameClientController_${{ github.ref_name }}.zip**: Complete package (recommended)
+          - **GameClientController.exe**: Standalone executable file
           
           ### 🚀 Installation
           1. Download the ZIP file and extract it
-          2. Run `SteamConnectionController.bat` **as administrator**
-          3. The program will automatically find Steam and start working
+          2. Run `GameClientController.bat` **as administrator**
+          3. The program will automatically find installed clients and start working
           
           ### ⚠️ Requirements
           - Windows 10/11
           - Administrator privileges
-          - Steam must be installed
+          - Supported game client(s) must be installed
           
           ### 🐛 Known Issues
           - Windows Defender warning may appear on first run (safe file)
@@ -85,8 +86,8 @@ jobs:
           ### 📞 Support
           For issues, use the [Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues) section.
         files: |
-          SteamConnectionController_${{ github.ref_name }}.zip
-          dist/SteamConnectionController.exe
+          GameClientController_${{ github.ref_name }}.zip
+          dist/GameClientController.exe
         draft: false
         prerelease: false
       env:

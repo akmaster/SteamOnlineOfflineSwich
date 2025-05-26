@@ -9,7 +9,7 @@
 3. **General** bölümünde **Repository name** altında **Description** kutusunu bulun
 4. Şu açıklamayı ekleyin:
    ```
-   Control Steam's internet connection with Windows Firewall - Standalone executable with automatic Steam management
+   Control internet connection for various game clients (Steam, Ubisoft Connect, EA Play, Rockstar Launcher) using Windows Firewall. Standalone executable with automatic client management.
    ```
 
 ### 2️⃣ Topics (Etiketler) Ekleme:
@@ -18,6 +18,13 @@
 2. **🏷️ Topics** kısmına tıklayın
 3. Şu topic'leri tek tek ekleyin:
    - `steam`
+   - `ubisoft-connect`
+   - `uplay`
+   - `ea-play`
+   - `origin`
+   - `ea-desktop`
+   - `rockstar-launcher`
+   - `game-launcher`
    - `windows`
    - `firewall`
    - `python`
@@ -27,6 +34,7 @@
    - `pyinstaller`
    - `connection-control`
    - `network-management`
+   - `game-client`
 
 ### 3️⃣ Repository Features Aktifleştirme:
 

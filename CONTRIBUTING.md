@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for wanting to contribute to the Steam Connection Controller project! 🎉
+Thank you for wanting to contribute to the Game Client Connection Controller project! 🎉
 
 ## 📋 Table of Contents
 - [Types of Contributions](#types-of-contributions)
@@ -45,8 +45,8 @@ Thank you for wanting to contribute to the Steam Connection Controller project! 
 1. Fork the repository
 2. Clone to your local machine:
    ```bash
-   git clone https://github.com/akmaster/SteamOnlineOfflineSwich.git
-   cd SteamOnlineOfflineSwich
+   git clone https://github.com/akmaster/SteamOnlineOfflineSwich.git <!-- TODO: Update repo URL if changed -->
+   cd SteamOnlineOfflineSwich <!-- TODO: Update directory name if changed -->
    ```
 3. Run the test program:
    ```bash
@@ -68,17 +68,21 @@ Thank you for wanting to contribute to the Steam Connection Controller project! 
 
 ### Example Code Format
 ```python
-def block_steam_connection(self):
-    """Block Steam's internet connection.
+def block_client_connection(self, client_name):
+    """Block the selected game client's internet connection.
     
+    Args:
+        client_name (str): The name of the client (e.g., "Steam", "Ubisoft").
+
     Returns:
         bool: True if operation successful, False otherwise
     """
     try:
-        # Code here
+        # Code here to block connection for the given client_name
+        print(f"Blocking connection for {client_name}...")
         return True
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error blocking {client_name}: {e}")
         return False
 ```
 
@@ -167,14 +171,14 @@ git push origin feature/new-feature
 ## 🎯 Development Goals
 
 ### Short Term
-- [ ] Support for more Steam paths
-- [ ] Enhanced error handling
-- [ ] UI improvements
+- [ ] Support for more client installation paths for all supported clients
+- [ ] Enhanced error handling for multi-client scenarios
+- [ ] UI improvements for better client selection and status display
 
 ### Long Term
-- [ ] Support for other gaming platforms
-- [ ] Timer feature
-- [ ] Profile system
+- [ ] Support for other gaming platforms (e.g., Epic Games Store, GOG Galaxy)
+- [ ] Timer feature (automatic on/off at specific times for selected clients)
+- [ ] Profile system (different setting sets, possibly per client)
 
 ## 📞 Help
 

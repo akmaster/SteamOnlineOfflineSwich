@@ -21,7 +21,7 @@ Closes #(issue number)
 ## 🧪 Tested?
 - [ ] Yes, tested in local environment
 - [ ] Yes, tested on different Windows versions
-- [ ] Yes, tested with different Steam installations
+- [ ] Yes, tested with different client installations (Steam, Ubisoft, EA, Rockstar)
 - [ ] No, not tested
 
 ## 📸 Screenshots

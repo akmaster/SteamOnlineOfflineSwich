@@ -29,8 +29,9 @@ Add screenshots if available.
 ## 💻 System Information
 - Operating System: [e.g. Windows 11]
 - Python Version: [e.g. 3.13.2]
-- Steam Installation Path: [e.g. C:\Program Files (x86)\Steam\]
+- Client Installation Path (Steam/Ubisoft/EA/Rockstar): [e.g. C:\Program Files (x86)\Steam\]
 - Administrator Rights: [Yes/No]
+- Selected Client in App: [Steam/Ubisoft/EA/Rockstar]
 
 ## 📋 Additional Information
 Add any other information that would help us understand the bug better.

@@ -30,28 +30,82 @@ def test_admin_rights():
         print(f"❌ Privilege check error: {e}")
         return False
 
-def test_steam_detection():
-    """Test Steam detection"""
-    possible_paths = [
+def test_client_detection():
+    """Test detection for all supported game clients."""
+    clients_found = 0
+    
+    # Test Steam
+    steam_possible_paths = [
         "C:\\Program Files (x86)\\Steam\\steam.exe",
         "C:\\Program Files\\Steam\\steam.exe",
         "D:\\Steam\\steam.exe",
         "E:\\Steam\\steam.exe"
     ]
-    
-    found_paths = []
-    for path in possible_paths:
-        if os.path.exists(path):
-            found_paths.append(path)
-    
-    if found_paths:
-        print(f"✅ Steam found: {len(found_paths)} location(s)")
-        for path in found_paths:
-            print(f"   📁 {path}")
-        return True
+    steam_found_paths = [p for p in steam_possible_paths if os.path.exists(p)]
+    if steam_found_paths:
+        print(f"✅ Steam found: {len(steam_found_paths)} location(s)")
+        clients_found +=1
     else:
         print("⚠️  Steam not found (in standard locations)")
-        return False
+
+    # Test Ubisoft Connect
+    ubisoft_possible_dirs = [
+        "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher",
+        "C:\\Program Files\\Ubisoft\\Ubisoft Game Launcher",
+    ]
+    ubisoft_exes = ["upc.exe", "UbisoftGameLauncher.exe", "UbisoftConnect.exe"]
+    ubisoft_found = False
+    for u_dir in ubisoft_possible_dirs:
+        if os.path.isdir(u_dir):
+            for u_exe in ubisoft_exes:
+                if os.path.exists(os.path.join(u_dir, u_exe)):
+                    print(f"✅ Ubisoft Connect found (in {u_dir})")
+                    ubisoft_found = True
+                    clients_found +=1
+                    break
+        if ubisoft_found: break
+    if not ubisoft_found:
+        print("⚠️  Ubisoft Connect not found (in standard locations)")
+
+    # Test EA Play
+    ea_possible_dirs = [
+        "C:\\Program Files\\Electronic Arts\\EA Desktop\\EA Desktop",
+        "C:\\Program Files (x86)\\Electronic Arts\\EA Desktop\\EA Desktop",
+    ]
+    ea_exes = ["EADesktop.exe", "EALauncher.exe"]
+    ea_found = False
+    for e_dir in ea_possible_dirs:
+        if os.path.isdir(e_dir):
+            for e_exe in ea_exes:
+                if os.path.exists(os.path.join(e_dir, e_exe)):
+                    print(f"✅ EA Play found (in {e_dir})")
+                    ea_found = True
+                    clients_found +=1
+                    break
+        if ea_found: break
+    if not ea_found:
+        print("⚠️  EA Play not found (in standard locations)")
+
+    # Test Rockstar Launcher
+    rockstar_possible_dirs = [
+        "C:\\Program Files\\Rockstar Games\\Launcher",
+        "C:\\Program Files (x86)\\Rockstar Games\\Launcher",
+    ]
+    rockstar_exes = ["Launcher.exe", "LauncherPatcher.exe"]
+    rockstar_found = False
+    for r_dir in rockstar_possible_dirs:
+        if os.path.isdir(r_dir):
+            for r_exe in rockstar_exes:
+                if os.path.exists(os.path.join(r_dir, r_exe)):
+                    print(f"✅ Rockstar Launcher found (in {r_dir})")
+                    rockstar_found = True
+                    clients_found +=1
+                    break
+        if rockstar_found: break
+    if not rockstar_found:
+        print("⚠️  Rockstar Launcher not found (in standard locations)")
+        
+    return clients_found > 0 # En az bir istemci bulunduysa başarılı say
 
 def test_firewall_access():
     """Test firewall access"""
@@ -84,14 +138,14 @@ def test_psutil_library():
 
 def main():
     print("=" * 50)
-    print("Steam Connection Controller - System Test")
+    print("Game Client Connection Controller - System Test") # Başlık güncellendi
     print("=" * 50)
     print()
     
     tests = [
         ("Python Installation", test_python_installation),
         ("Administrator Privileges", test_admin_rights),
-        ("Steam Detection", test_steam_detection),
+        ("Client Detection", test_client_detection), # Test adı güncellendi
         ("Firewall Access", test_firewall_access),
         ("psutil Library", test_psutil_library)
     ]
@@ -111,12 +165,12 @@ def main():
     if passed == total:
         print("🎉 All tests successful! Program ready to use.")
     elif passed >= total - 1:
-        print("⚠️  Minor issues exist but program should work.")
+        print("⚠️  Minor issues exist but program should work.") # Girinti düzeltildi
     else:
         print("❌ Serious issues exist. Please check requirements.")
     
     print("\n💡 To run the program:")
-    print("   1. Right-click on steam_controller.bat")
+    print("   1. Right-click on game_client_controller.bat") # .bat adı güncellendi
     print("   2. Select 'Run as administrator'")
     print("=" * 50)
 

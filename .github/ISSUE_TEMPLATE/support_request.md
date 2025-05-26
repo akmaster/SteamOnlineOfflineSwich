@@ -18,14 +18,15 @@ What have you tried to solve this problem?
 - [ ] I read the README file
 - [ ] I checked the troubleshooting section
 - [ ] I ran the program as administrator
-- [ ] I checked Steam paths
+- [ ] I checked client paths (Steam/Ubisoft/EA/Rockstar)
 - [ ] Other: ___________
 
 ## 💻 System Information
 - Operating System: [e.g. Windows 11]
 - Python Version: [e.g. 3.13.2]
-- Steam Installed: [Yes/No]
-- Steam Path: [e.g. C:\Program Files (x86)\Steam\]
+- Client Installed (Steam/Ubisoft/EA/Rockstar): [Yes/No]
+- Client Path: [e.g. C:\Program Files (x86)\Steam\]
+- Selected Client in App: [Steam/Ubisoft/EA/Rockstar]
 - Administrator Rights: [Yes/No]
 
 ## 📸 Screenshots

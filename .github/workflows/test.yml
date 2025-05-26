@@ -1,4 +1,4 @@
-name: Test Steam Connection Controller
+name: Test Game Client Connection Controller
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
     
     - name: Test Python syntax
       run: |
-        python -m py_compile steam_connection_controller.py
+        python -m py_compile game_client_controller.py
         python -m py_compile test_program.py
     
     - name: Run basic tests
@@ -106,5 +106,5 @@ jobs:
     
     - name: Type checking with mypy
       run: |
-        mypy steam_connection_controller.py --ignore-missing-imports
+        mypy game_client_controller.py --ignore-missing-imports
       continue-on-error: true
