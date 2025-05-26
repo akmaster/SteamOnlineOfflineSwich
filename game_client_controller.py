@@ -13,7 +13,7 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
     def __init__(self, root):
         self.root = root
         self.root.title("Game Client Connection Controller")
-        self.root.geometry("550x440") # Rockstar için biraz daha genişletildi
+        self.root.geometry("650x440") # Epic Games için genişletildi
         self.root.resizable(False, False)
         
         # Client executable file paths
@@ -21,6 +21,7 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         self.ubisoft_paths = self.find_ubisoft_paths()
         self.ea_paths = self.find_ea_paths()
         self.rockstar_paths = self.find_rockstar_paths() # Rockstar yolları eklendi
+        self.epic_paths = self.find_epic_paths() # Epic Games yolları eklendi
         
         self.selected_client = tk.StringVar(value="Steam") # Varsayılan istemci
         
@@ -226,6 +227,67 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
                         break
         return list(set(rockstar_paths))
 
+    def find_epic_paths(self):
+        """Find Epic Games Launcher installation paths and relevant executables."""
+        main_launcher_executables = [
+            "EpicGamesLauncher.exe"
+        ]
+        # Epic Games genellikle Program Files (x86) altına kurulur
+        possible_dir_roots = [
+            "C:\\Program Files (x86)\\Epic Games\\Launcher",
+            "C:\\Program Files\\Epic Games\\Launcher", # Nadir de olsa kontrol edilebilir
+            "D:\\Epic Games\\Launcher", # Örnek ek sürücü yolları
+            "E:\\Epic Games\\Launcher"
+        ]
+
+        epic_paths = []
+        found_launcher_portal_dir = None
+
+        for dir_root in possible_dir_roots:
+            if os.path.isdir(dir_root):
+                # Epic Games Launcher ana .exe dosyası genellikle "Portal/Binaries/Win64" veya "Portal/Binaries/Win32" altındadır.
+                portal_subdirs = [
+                    os.path.join(dir_root, "Portal", "Binaries", "Win64"),
+                    os.path.join(dir_root, "Portal", "Binaries", "Win32")
+                ]
+                for portal_dir in portal_subdirs:
+                    if os.path.isdir(portal_dir):
+                        for main_exe in main_launcher_executables:
+                            if os.path.exists(os.path.join(portal_dir, main_exe)):
+                                found_launcher_portal_dir = portal_dir
+                                break
+                    if found_launcher_portal_dir:
+                        break
+            if found_launcher_portal_dir:
+                break
+        
+        if found_launcher_portal_dir:
+            known_epic_exes = [
+                "EpicGamesLauncher.exe", 
+                "EpicWebHelper.exe", # Genellikle aynı dizinde bulunur
+                # "CrashReportClient.exe" # Bu genellikle Engine altındadır, Launcher'ın doğrudan bir parçası olmayabilir.
+                # "UnrealCEFSubProcess.exe" # Bu da genellikle Engine ile gelir.
+            ]
+            for exe_name in known_epic_exes:
+                exe_path = os.path.join(found_launcher_portal_dir, exe_name)
+                if os.path.exists(exe_path) and exe_path not in epic_paths:
+                    epic_paths.append(exe_path)
+            
+            # Epic Games servisleri (örn: EpicOnlineServices) farklı bir yerde olabilir
+            # "C:\Program Files (x86)\Epic Games\Epic Online Services\EpicOnlineServicesHost.exe" gibi
+            # Şimdilik sadece ana launcher ve web helper'a odaklanıyoruz.
+            # Gerekirse bu kısım genişletilebilir.
+
+            # Fallback: Eğer yukarıdaki özel exeler bulunamazsa ama ana dizin bulunduysa, sadece ana exe'yi ekle
+            if not epic_paths:
+                 for main_exe in main_launcher_executables:
+                    exe_path = os.path.join(found_launcher_portal_dir, main_exe)
+                    if os.path.exists(exe_path):
+                        epic_paths.append(exe_path)
+                        break
+        
+        return list(set(epic_paths))
+
 
     def create_gui(self):
         """Create GUI interface"""
@@ -236,11 +298,11 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         # Title
         title_label = ttk.Label(main_frame, text="Game Client Connection Controller", 
                                font=("Arial", 16, "bold"))
-        title_label.grid(row=0, column=0, columnspan=4, pady=(0, 10)) # columnspan 4 oldu
+        title_label.grid(row=0, column=0, columnspan=5, pady=(0, 10)) # columnspan 5 oldu
 
         # Client selection
         client_frame = ttk.LabelFrame(main_frame, text="Select Client", padding="10")
-        client_frame.grid(row=1, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=(0,10)) # columnspan 4 oldu
+        client_frame.grid(row=1, column=0, columnspan=5, sticky=(tk.W, tk.E), pady=(0,10)) # columnspan 5 oldu
         
         steam_radio = ttk.Radiobutton(client_frame, text="Steam", variable=self.selected_client, 
                                       value="Steam", command=self.on_client_change)
@@ -255,18 +317,22 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         ea_radio.grid(row=0, column=2, padx=5, pady=5, sticky=tk.W)
 
         rockstar_radio = ttk.Radiobutton(client_frame, text="Rockstar", variable=self.selected_client,
-                                   value="Rockstar", command=self.on_client_change) # Rockstar eklendi
+                                   value="Rockstar", command=self.on_client_change) 
         rockstar_radio.grid(row=0, column=3, padx=5, pady=5, sticky=tk.W)
+
+        epic_radio = ttk.Radiobutton(client_frame, text="Epic Games", variable=self.selected_client,
+                                   value="Epic", command=self.on_client_change) # Epic Games eklendi
+        epic_radio.grid(row=0, column=4, padx=5, pady=5, sticky=tk.W)
 
 
         # Status indicator
         self.status_label = ttk.Label(main_frame, text="Checking status...", 
                                      font=("Arial", 12))
-        self.status_label.grid(row=2, column=0, columnspan=2, pady=(0, 10)) # row indeksi güncellendi
+        self.status_label.grid(row=2, column=0, columnspan=3, pady=(0, 10)) # columnspan güncellendi
         
         # Status indicator frame
         status_frame = ttk.LabelFrame(main_frame, text="Connection Status", padding="10")
-        status_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(0, 10)) # row indeksi güncellendi
+        status_frame.grid(row=3, column=0, columnspan=3, sticky=(tk.W, tk.E), pady=(0, 10)) # columnspan güncellendi
         
         self.connection_status = ttk.Label(status_frame, text="●", font=("Arial", 20))
         self.connection_status.grid(row=0, column=0, padx=(0, 10))
@@ -277,26 +343,26 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         
         # Buttons
         button_frame = ttk.Frame(main_frame)
-        button_frame.grid(row=4, column=0, columnspan=2, pady=10) # row indeksi güncellendi
+        button_frame.grid(row=4, column=0, columnspan=3, pady=10) # columnspan güncellendi
         
         self.block_button = ttk.Button(button_frame, text="Block Connection", 
-                                      command=self.block_client, width=15) # command güncellendi
+                                      command=self.block_client, width=15) 
         self.block_button.grid(row=0, column=0, padx=(0, 10))
         
         self.unblock_button = ttk.Button(button_frame, text="Allow Connection", 
-                                        command=self.unblock_client, width=15) # command güncellendi
+                                        command=self.unblock_client, width=15) 
         self.unblock_button.grid(row=0, column=1, padx=(10, 0))
         
         # Refresh button
         refresh_button = ttk.Button(main_frame, text="Refresh Status", 
                                    command=self.check_connection_status)
-        refresh_button.grid(row=5, column=0, columnspan=2, pady=10) # row indeksi güncellendi
+        refresh_button.grid(row=5, column=0, columnspan=3, pady=10) # columnspan güncellendi
         
         # Client paths info
-        self.info_frame = ttk.LabelFrame(main_frame, text="Client Information", padding="10") # text güncellendi
-        self.info_frame.grid(row=6, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(10, 0)) # row indeksi güncellendi
+        self.info_frame = ttk.LabelFrame(main_frame, text="Client Information", padding="10") 
+        self.info_frame.grid(row=6, column=0, columnspan=3, sticky=(tk.W, tk.E), pady=(10, 0)) # columnspan güncellendi
         
-        self.update_client_info_display() # Bilgi ekranını güncellemek için yeni fonksiyon
+        self.update_client_info_display() 
 
     def update_client_info_display(self):
         """Update the client information display based on selection"""
@@ -314,9 +380,12 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         elif client_name == "EA":
             paths_to_check = self.ea_paths
             info_text_label = "EA Play (EA Desktop)"
-        elif client_name == "Rockstar": # Rockstar eklendi
+        elif client_name == "Rockstar": 
             paths_to_check = self.rockstar_paths
             info_text_label = "Rockstar Launcher"
+        elif client_name == "Epic": # Epic Games eklendi
+            paths_to_check = self.epic_paths
+            info_text_label = "Epic Games Launcher"
         
         if paths_to_check:
             info_text = f"Found {info_text_label} files: {len(paths_to_check)}"
@@ -383,9 +452,12 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         elif client_name == "EA":
             client_paths = self.ea_paths
             primary_process_names = ["EADesktop.exe", "EALauncher.exe", "EABackgroundService.exe"]
-        elif client_name == "Rockstar": # Rockstar eklendi
+        elif client_name == "Rockstar": 
             client_paths = self.rockstar_paths
             primary_process_names = ["Launcher.exe", "LauncherPatcher.exe", "RockstarService.exe"]
+        elif client_name == "Epic": # Epic Games eklendi
+            client_paths = self.epic_paths
+            primary_process_names = ["EpicGamesLauncher.exe", "EpicWebHelper.exe"]
         
         if not client_paths:
             messagebox.showerror("Error", f"{client_name} not found!")
@@ -422,9 +494,12 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
                 elif client_name == "EA":
                     rule_name_out_prefix = "Block EA Out"
                     rule_name_in_prefix = "Block EA In"
-                elif client_name == "Rockstar": # Rockstar eklendi
+                elif client_name == "Rockstar": 
                     rule_name_out_prefix = "Block Rockstar Out"
                     rule_name_in_prefix = "Block Rockstar In"
+                elif client_name == "Epic": # Epic Games eklendi
+                    rule_name_out_prefix = "Block Epic Out"
+                    rule_name_in_prefix = "Block Epic In"
 
                 # Block outbound connections
                 cmd_out = f'netsh advfirewall firewall add rule name="{rule_name_out_prefix} - {os.path.basename(client_path_item)}" dir=out action=block program="{client_path_item}"'
@@ -476,9 +551,12 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
         elif client_name == "EA":
             client_paths = self.ea_paths
             primary_process_names = ["EADesktop.exe", "EALauncher.exe", "EABackgroundService.exe"]
-        elif client_name == "Rockstar": # Rockstar eklendi
+        elif client_name == "Rockstar": 
             client_paths = self.rockstar_paths
             primary_process_names = ["Launcher.exe", "LauncherPatcher.exe", "RockstarService.exe"]
+        elif client_name == "Epic": # Epic Games eklendi
+            client_paths = self.epic_paths
+            primary_process_names = ["EpicGamesLauncher.exe", "EpicWebHelper.exe"]
         
         if not client_paths: 
             messagebox.showerror("Error", f"{client_name} not found!")
@@ -518,10 +596,12 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
                 elif client_name == "EA":
                     rule_name_out_prefix = "Block EA Out"
                     rule_name_in_prefix = "Block EA In"
-                elif client_name == "Rockstar": # Rockstar eklendi
+                elif client_name == "Rockstar": 
                     rule_name_out_prefix = "Block Rockstar Out"
                     rule_name_in_prefix = "Block Rockstar In"
-
+                elif client_name == "Epic": # Epic Games eklendi
+                    rule_name_out_prefix = "Block Epic Out"
+                    rule_name_in_prefix = "Block Epic In"
 
                 # Remove outbound rules
                 cmd_out = f'netsh advfirewall firewall delete rule name="{rule_name_out_prefix} - {basename}"'
@@ -587,11 +667,16 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
                     'EALocalHostSvc.exe', 'EAGEP.exe', 'EACefSubProcess.exe',
                     'IGOProxy32.exe', 'Link2EA.exe', 'ErrorReporter.exe'
                 ]
-            elif client_name == "Rockstar": # Rockstar eklendi
+            elif client_name == "Rockstar": 
                 related_processes = [
-                    'RockstarService.exe', # Zaten primary'de olabilir
+                    'RockstarService.exe', 
                     'RockstarSteamHelper.exe' 
-                    # 'uninstall.exe' genellikle kapatılmaz
+                ]
+            elif client_name == "Epic": # Epic Games eklendi
+                related_processes = [
+                    'EpicWebHelper.exe', # Zaten primary'de olabilir
+                    'CrashReportClient.exe', # Bu genellikle Launcher'ın alt dizinlerinde bulunur
+                    # EpicOnlineServicesHost.exe gibi servisler de eklenebilir, ancak şimdilik ana launcher'a odaklanalım.
                 ]
 
             for rp in related_processes:
@@ -651,8 +736,10 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
             paths_to_check = self.ubisoft_paths
         elif client_name == "EA":
             paths_to_check = self.ea_paths
-        elif client_name == "Rockstar": # Rockstar eklendi
+        elif client_name == "Rockstar": 
             paths_to_check = self.rockstar_paths
+        elif client_name == "Epic": # Epic Games eklendi
+            paths_to_check = self.epic_paths
         
         if not paths_to_check: 
             self.update_status(is_blocked=False, not_found=True, client_name_for_status=client_name)
@@ -665,8 +752,10 @@ class GameClientConnectionController: # Sınıf adı değiştirildi
                  rule_name_prefix = "Block Ubisoft Out"
             elif client_name == "EA":
                  rule_name_prefix = "Block EA Out"
-            elif client_name == "Rockstar": # Rockstar eklendi
+            elif client_name == "Rockstar": 
                  rule_name_prefix = "Block Rockstar Out"
+            elif client_name == "Epic": # Epic Games eklendi
+                 rule_name_prefix = "Block Epic Out"
             
             for client_path_item in paths_to_check: 
                 basename = os.path.basename(client_path_item)
