@@ -1,14 +1,16 @@
-# Sürüm X.Y.Z - [Tarih]
+# Version 1.2.0 - May 26, 2025
 
-## ✨ Yeni Özellikler
+## ✨ New Features
 
--   **Epic Games Launcher Desteği Eklendi:** Artık Epic Games Launcher'ın internet bağlantısını engelleyebilir ve izin verebilirsiniz.
--   Arayüz, Epic Games Launcher seçeneğini içerecek şekilde güncellendi.
+-   **Added Epic Games Launcher Support:** You can now block and allow internet connection for Epic Games Launcher.
+-   The user interface has been updated to include the Epic Games Launcher option.
+-   The entire project (code comments, UI, and documentation) has been translated to English.
 
-## 🧹 İyileştirmeler
+## 🧹 Improvements
 
--   Gereksiz proje dosyaları temizlenerek daha derli toplu bir yapı sağlandı.
+-   Unnecessary project files were cleaned up for a more streamlined structure.
+-   Build script (`build_exe.py`) updated to reflect changes in project files and to ensure all outputs are in English.
 
-## 🐛 Hata Düzeltmeleri
+## 🐛 Bug Fixes
 
--   (Bu sürümde bilinen bir hata düzeltmesi yapılmadı.)
+-   (No known bug fixes in this version.)

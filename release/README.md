@@ -1,27 +1,27 @@
 # Game Client Connection Controller
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/akmaster/SteamOnlineOfflineSwich) <!-- TODO: Update repo name in URL if changed -->
-![GitHub](https://img.shields.io/github/license/akmaster/SteamOnlineOfflineSwich) <!-- TODO: Update repo name in URL if changed -->
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/akmaster/SteamOnlineOfflineSwich/test.yml) <!-- TODO: Update repo name in URL if changed -->
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/akmaster/SteamOnlineOfflineSwich) 
+![GitHub](https://img.shields.io/github/license/akmaster/SteamOnlineOfflineSwich) 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/akmaster/SteamOnlineOfflineSwich/test.yml) 
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
-![GitHub issues](https://img.shields.io/github/issues/akmaster/SteamOnlineOfflineSwich) <!-- TODO: Update repo name in URL if changed -->
-![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich) <!-- TODO: Update repo name in URL if changed -->
-![Downloads](https://img.shields.io/github/downloads/akmaster/SteamOnlineOfflineSwich/total) <!-- TODO: Update repo name in URL if changed -->
+![GitHub issues](https://img.shields.io/github/issues/akmaster/SteamOnlineOfflineSwich) 
+![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich) 
+![Downloads](https://img.shields.io/github/downloads/akmaster/SteamOnlineOfflineSwich/total) 
 
-A simple and effective program to control the internet connection of various game clients (Steam, Ubisoft Connect, EA Play, Rockstar Launcher) on Windows.
+A simple and effective program to control the internet connection of various game clients (Steam, Ubisoft Connect, EA Play, Rockstar Launcher, Epic Games Launcher) on Windows.
 
 > **Note:** This program only works on Windows operating systems and requires administrator privileges.
 
 ## 📥 Download
 
-### 🎯 Latest Release: [v1.2.0 (Example)](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest) <!-- TODO: Update version and repo name -->
+### 🎯 Latest Release: [v1.2.0](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest) <!-- TODO: Update this link if you create a v1.2.0 release -->
 
 #### 📦 Recommended Download:
-- **[Complete Package (ZIP)](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.2.0/GameClientController_v1.2.0.zip)** <!-- TODO: Update version and repo name --> - Includes documentation and all files
+- **[Complete Package (ZIP) for v1.2.0](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.2.0/GameClientConnectionController_v1.2.0.zip)** <!-- TODO: Update this link if you create a v1.2.0 release with this asset name --> - Includes documentation and all files
 
 #### ⚡ Quick Download:
-- **[Standalone Executable](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.2.0/GameClientController.exe)** <!-- TODO: Update version and repo name --> - Just the program file
+- **[Standalone Executable for v1.2.0](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/download/v1.2.0/GameClientConnectionController.exe)** <!-- TODO: Update this link if you create a v1.2.0 release with this asset name --> - Just the program file
 
 > 💡 **First time?** Download the complete package for full documentation and setup instructions.
 
@@ -166,17 +166,17 @@ For issues:
 1. Check this README file.
 2. Review the troubleshooting section.
 3. Make sure you're running the program as administrator.
-4. Report bugs on [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues). <!-- TODO: Update repo name in URL if changed -->
+4. Report bugs on [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues). 
 
 ## 🔗 Links
 
-- **GitHub Repository**: [https://github.com/akmaster/SteamOnlineOfflineSwich](https://github.com/akmaster/SteamOnlineOfflineSwich) <!-- TODO: Update repo name in URL if changed -->
-- **Latest Release**: [Download Latest Version](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest) <!-- TODO: Update repo name in URL if changed -->
-- **Report Issues**: [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues) <!-- TODO: Update repo name in URL if changed -->
+- **GitHub Repository**: [https://github.com/akmaster/SteamOnlineOfflineSwich](https://github.com/akmaster/SteamOnlineOfflineSwich) 
+- **Latest Release**: [Download Latest Version](https://github.com/akmaster/SteamOnlineOfflineSwich/releases/latest) 
+- **Report Issues**: [GitHub Issues](https://github.com/akmaster/SteamOnlineOfflineSwich/issues) 
 - **Contribute**: [Contributing Guide](CONTRIBUTING.md)
 
 ## ⭐ Star This Project
 
 If you find this tool useful, please consider giving it a star on GitHub! It helps others discover the project.
 
-[![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich?style=social)](https://github.com/akmaster/SteamOnlineOfflineSwich/stargazers) <!-- TODO: Update repo name in URL if changed -->
+[![GitHub stars](https://img.shields.io/github/stars/akmaster/SteamOnlineOfflineSwich?style=social)](https://github.com/akmaster/SteamOnlineOfflineSwich/stargazers)

@@ -16,7 +16,7 @@ def build_executable():
         "--add-data", "requirements.txt;.",     # Include requirements
         "--hidden-import", "psutil",            # Ensure psutil is included
         "--hidden-import", "tkinter",           # Ensure tkinter is included
-        "game_client_controller.py" # Python dosya adı güncellendi
+        "game_client_controller.py" # Python file name updated
     ]
     
     # Add icon if exists
@@ -36,38 +36,38 @@ def build_executable():
         
         # Copy files to release folder
         files_to_copy = [
-            ("dist/GameClientController.exe", "GameClientController.exe"), # .exe adı güncellendi
+            ("dist/GameClientController.exe", "GameClientController.exe"), # .exe name updated
             ("README.md", "README.md"),
             ("LICENSE", "LICENSE"),
-            ("CHANGELOG.md", "CHANGELOG.md"),
+            # ("CHANGELOG.md", "CHANGELOG.md"), # Removed as it's deleted from root
             ("requirements.txt", "requirements.txt"),
-            ("test_program.py", "test_program.py"),
-            ("game_client_controller.bat", "GameClientController.bat") # Yeni .bat dosyası eklendi (opsiyonel, aşağıdaki ile çakışabilir)
+            # ("test_program.py", "test_program.py"), # Removed as it's deleted from root
+            ("game_client_controller.bat", "GameClientController.bat") # New .bat file added (optional, may conflict with the one below)
         ]
         
         for src, dst in files_to_copy:
-            if src == "game_client_controller.bat" and os.path.exists(src): # Eğer ana dizindeki .bat kopyalanıyorsa
+            if src == "game_client_controller.bat" and os.path.exists(src): # If .bat from root is being copied
                  shutil.copy2(src, f"release/{dst}")
                  print(f"✅ Copied {dst} (from root)")
             elif os.path.exists(src):
                 shutil.copy2(src, f"release/{dst}")
                 print(f"✅ Copied {dst}")
         
-        # Create a simple batch file for the exe (veya yukarıdakini kullan)
-        # Eğer yukarıda game_client_controller.bat kopyalandıysa bu kısım gereksiz olabilir
-        # veya bu kısım release içindeki .bat'ı oluşturur. Tutarlılık için birini seçmek iyi olur.
-        # Şimdilik bu kısmı bırakıyorum, release içinde yeni bir .bat oluşturacak.
-        with open("release/GameClientController.bat", "w") as f: # .bat adı güncellendi
+        # Create a simple batch file for the exe (or use the one above)
+        # If game_client_controller.bat was copied above, this part might be unnecessary
+        # or this part creates the .bat inside release. It's good to choose one for consistency.
+        # For now, I'm leaving this part, it will create a new .bat inside release.
+        with open("release/GameClientController.bat", "w") as f: # .bat name updated
             f.write("@echo off\n")
-            f.write("title Game Client Connection Controller\n") # Başlık güncellendi
-            f.write("echo Starting Game Client Connection Controller...\n") # Metin güncellendi
+            f.write("title Game Client Connection Controller\n") # Title updated
+            f.write("echo Starting Game Client Connection Controller...\n") # Text updated
             f.write("echo.\n")
             f.write("echo Note: This program requires administrator privileges.\n")
             f.write("echo.\n")
-            f.write("GameClientController.exe\n") # .exe adı güncellendi
+            f.write("GameClientController.exe\n") # .exe name updated
             f.write("pause\n")
         
-        print("✅ Created GameClientController.bat in release folder") # Mesaj güncellendi
+        print("✅ Created GameClientController.bat in release folder") # Message updated
         
         print("\n🎉 Release package created in 'release' folder!")
         print("📦 Files included:")
@@ -87,7 +87,7 @@ def build_executable():
 def clean_build_files():
     """Clean up build artifacts"""
     folders_to_remove = ["build", "dist", "__pycache__"]
-    files_to_remove = ["GameClientController.spec"] # .spec adı güncellendi
+    files_to_remove = ["GameClientController.spec"] # .spec name updated
     
     for folder in folders_to_remove:
         if os.path.exists(folder):
@@ -101,7 +101,7 @@ def clean_build_files():
 
 if __name__ == "__main__":
     print("=" * 50)
-    print("Game Client Connection Controller - Build Script") # Başlık güncellendi
+    print("Game Client Connection Controller - Build Script") # Title updated
     print("=" * 50)
     
     if build_executable():
