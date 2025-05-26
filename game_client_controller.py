@@ -9,6 +9,8 @@ from pathlib import Path
 import threading
 import time
 import psutil
+from PIL import Image, ImageDraw # Sistem tepsisi ikonu için
+import pystray # Sistem tepsisi için
 
 class GameClientConnectionController:
     def __init__(self, root):
@@ -17,6 +19,15 @@ class GameClientConnectionController:
         self.root.geometry("680x520") # Yüksekliği artırdık
         self.root.resizable(False, False)
         self.root.configure(bg="#2B2B2B")
+        
+        # Pencere simgesini ayarla
+        try:
+            self.root.iconbitmap("icon.ico")
+        except:
+            pass  # Ikon bulunamazsa varsayılan simgeyi kullan
+        
+        # Windows görev çubuğu simgesini ayarla
+        self.set_taskbar_icon()
 
         self.default_font = tkFont.nametofont("TkDefaultFont")
         self.default_font.configure(family="Segoe UI", size=10)
@@ -91,7 +102,100 @@ class GameClientConnectionController:
         
         self.create_gui()
         self.check_connection_status()
+        self.setup_tray_icon()
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
     
+    def set_taskbar_icon(self):
+        """Windows görev çubuğu simgesini ayarla"""
+        try:
+            # Windows'ta görev çubuğu simgesini değiştirmek için
+            import ctypes
+            from ctypes import wintypes
+            
+            # Icon dosyasının tam yolunu al
+            icon_path = os.path.abspath("icon.ico")
+            if not os.path.exists(icon_path):
+                return
+            
+            # Windows API fonksiyonları
+            user32 = ctypes.windll.user32
+            kernel32 = ctypes.windll.kernel32
+            
+            # Pencere handle'ını al
+            hwnd = int(self.root.winfo_id())
+            
+            # Icon'u yükle
+            hicon = user32.LoadImageW(
+                None,  # hInst
+                icon_path,  # name
+                1,  # IMAGE_ICON
+                0,  # cx
+                0,  # cy
+                0x00000010 | 0x00008000  # LR_LOADFROMFILE | LR_DEFAULTSIZE
+            )
+            
+            if hicon:
+                # Pencere simgesini ayarla (küçük ve büyük)
+                user32.SendMessageW(hwnd, 0x0080, 0, hicon)  # WM_SETICON, ICON_SMALL
+                user32.SendMessageW(hwnd, 0x0080, 1, hicon)  # WM_SETICON, ICON_BIG
+                
+                # Görev çubuğunu yenile
+                user32.SetWindowTextW(hwnd, self.root.title())
+                
+        except Exception as e:
+            print(f"Görev çubuğu simgesi ayarlanamadı: {e}")
+    
+    def create_tray_image(self, width=64, height=64, color1='black', color2='white'):
+        # Basit bir ikon oluştur (Örnek: İki renkli bir kare)
+        image = Image.new('RGB', (width, height), color1)
+        dc = ImageDraw.Draw(image)
+        dc.rectangle(
+            (width // 4, height // 4, width * 3 // 4, height * 3 // 4),
+            fill=color2)
+        return image
+
+    def setup_tray_icon(self):
+        # İkonu oluştur veya yükle
+        try:
+            icon_image = Image.open("icon.ico")  # Kendi ikonumuzu kullan
+        except:
+            icon_image = self.create_tray_image()  # Yedek olarak programatik ikon
+
+        menu = (pystray.MenuItem('Göster', self.show_window, default=True),
+                pystray.MenuItem('Kapat', self.quit_window))
+        
+        self.tray_icon = pystray.Icon("GameClientController", icon_image, "Game Client Controller", menu)
+        
+        # pystray'i ayrı bir thread'de başlatmak, tkinter mainloop'u ile çakışmasını önler.
+        threading.Thread(target=self.tray_icon.run, daemon=True).start()
+
+    def on_closing(self):
+        # Pencereyi gizle ve tepsi ikonunu göster (eğer zaten çalışmıyorsa)
+        self.root.withdraw()
+        if not self.tray_icon.visible: # pystray 0.18+ için .visible kontrolü
+             # tray_icon.run() zaten thread'de çalışıyor, tekrar çağırmaya gerek yok.
+             # Sadece emin olmak için bir kontrol eklenebilir.
+             pass
+        if self.tray_icon:
+            self.tray_icon.notify("Program hala çalışmaya devam ediyor.", "Game Client Controller")
+        # messagebox.showinfo("Program Çalışıyor", 
+        #                     "Program hala çalışmaya devam ediyor.\n"
+        #                     "Sistem tepsisindeki ikondan yönetebilirsiniz.")
+
+    def show_window(self):
+        # Tepsi ikonunu gizle (isteğe bağlı) ve pencereyi göster
+        # self.tray_icon.stop() # Eğer ikonu tamamen kaldırmak isterseniz
+        self.root.deiconify()
+        self.root.lift()
+        self.root.focus_force()
+
+    def quit_window(self):
+        if self.tray_icon:
+            self.tray_icon.stop()
+        self.root.quit()
+        self.root.destroy() # Tkinter penceresini tamamen yok et
+        sys.exit() # Programdan çık
+
     def find_client_paths_steam(self):
         possible_paths = [
             "C:\\Program Files (x86)\\Steam\\steam.exe", "C:\\Program Files\\Steam\\steam.exe",
@@ -514,7 +618,19 @@ class GameClientConnectionController:
 def main():
     root = tk.Tk()
     app = GameClientConnectionController(root)
-    root.mainloop()
+    # root.mainloop() pystray kendi döngüsünü yönettiği için ve tkinter işlemleri
+    # app.quit_window içinde sonlandırıldığı için bu satır genellikle pystray ile
+    # birlikte kullanıldığında kaldırılır veya farklı yönetilir.
+    # Ancak, pystray'i ayrı bir thread'de çalıştırdığımız için tkinter'in ana döngüsü devam etmeli.
+    root.mainloop() 
 
 if __name__ == "__main__":
+    # Yüksek DPI ayarları için (isteğe bağlı, Windows'ta bulanıklığı önleyebilir)
+    try:
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)
+    except AttributeError: # Eski Windows versiyonları için
+        try:
+            ctypes.windll.user32.SetProcessDPIAware()
+        except AttributeError:
+            pass # DPI ayarı yapılamadıysa devam et
     main()
